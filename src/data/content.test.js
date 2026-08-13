@@ -1,4 +1,4 @@
-import { about, services, experiences, projects, skills, socials } from './content';
+import { about, services, projects, skills, socials } from './content';
 
 describe('content data', () => {
   it('exports a well-formed about object', () => {
@@ -20,19 +20,6 @@ describe('content data', () => {
         title: expect.any(String),
         description: expect.any(String),
         icon: expect.any(String),
-      });
-    });
-  });
-
-  it('exports non-empty experiences with required fields', () => {
-    expect(experiences.length).toBeGreaterThan(0);
-    experiences.forEach((item) => {
-      expect(item).toMatchObject({
-        id: expect.any(String),
-        role: expect.any(String),
-        company: expect.any(String),
-        period: expect.any(String),
-        description: expect.any(String),
       });
     });
   });

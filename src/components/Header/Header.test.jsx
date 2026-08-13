@@ -5,7 +5,7 @@ describe('Header', () => {
   it('renders a link for every nav section', () => {
     render(<Header name="Luccas Madia" />);
 
-    ['Sobre', 'Serviços', 'Experiências', 'Projetos', 'Habilidades', 'Contato'].forEach((label) => {
+    ['Sobre', 'Serviços', 'Projetos', 'Habilidades', 'Contato'].forEach((label) => {
       expect(screen.getByRole('link', { name: label })).toBeInTheDocument();
     });
   });

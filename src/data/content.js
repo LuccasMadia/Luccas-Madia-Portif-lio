@@ -36,30 +36,6 @@ export const services = [
   },
 ];
 
-export const experiences = [
-  {
-    id: 'exp-1',
-    role: 'Cargo Placeholder',
-    company: 'Empresa Placeholder',
-    period: '2024 — Atual',
-    description: 'Descrição das responsabilidades e conquistas nesse cargo.',
-  },
-  {
-    id: 'exp-2',
-    role: 'Cargo Anterior',
-    company: 'Empresa Anterior',
-    period: '2022 — 2024',
-    description: 'Descrição das responsabilidades e conquistas nesse cargo.',
-  },
-  {
-    id: 'exp-3',
-    role: 'Primeiro Cargo',
-    company: 'Primeira Empresa',
-    period: '2020 — 2022',
-    description: 'Descrição das responsabilidades e conquistas nesse cargo.',
-  },
-];
-
 export const projects = [
   {
     id: 'proj-1',
