@@ -31,12 +31,16 @@ describe('content data', () => {
         id: expect.any(String),
         title: expect.any(String),
         description: expect.any(String),
-        liveUrl: expect.any(String),
         codeUrl: expect.any(String),
       });
       expect(Array.isArray(project.stack)).toBe(true);
       expect(project.stack.length).toBeGreaterThan(0);
     });
+  });
+
+  it('first project includes a screenshot gallery', () => {
+    expect(Array.isArray(projects[0].images)).toBe(true);
+    expect(projects[0].images.length).toBeGreaterThan(0);
   });
 
   it('exports non-empty skill categories with items', () => {

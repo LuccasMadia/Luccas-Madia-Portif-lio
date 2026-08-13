@@ -1,5 +1,16 @@
 // EDITAR AQUI: troque todo o conteúdo abaixo pelas suas informações reais.
 
+import canecasInicio from '../assets/projects/canecas/canecas-00-inicio.png';
+import canecasDashboard from '../assets/projects/canecas/canecas-01-dashboard.png';
+import canecasInsumos from '../assets/projects/canecas/canecas-02-insumos.png';
+import canecasProdutos from '../assets/projects/canecas/canecas-03-produtos.png';
+import canecasPedidos from '../assets/projects/canecas/canecas-04-pedidos.png';
+import canecasClientes from '../assets/projects/canecas/canecas-05-clientes.png';
+import canecasFornecedores from '../assets/projects/canecas/canecas-06-fornecedores.png';
+import canecasSeguranca from '../assets/projects/canecas/canecas-07-seguranca.png';
+import canecasRelatorios from '../assets/projects/canecas/canecas-08-relatorios.png';
+import canecasHistorico from '../assets/projects/canecas/canecas-09-historico.png';
+
 export const about = {
   name: 'Luccas Madia',
   role: 'Desenvolvedor & Consultor de Gestão',
@@ -39,11 +50,23 @@ export const services = [
 export const projects = [
   {
     id: 'proj-1',
-    title: 'Projeto Um',
-    description: 'Breve descrição do projeto e o problema que ele resolve.',
-    stack: ['React', 'Node.js'],
-    liveUrl: 'https://example.com',
-    codeUrl: 'https://github.com/seu-usuario/projeto-um',
+    title: 'Canecas da Dri',
+    description:
+      'Sistema desktop de gestão de estoque para uma loja de canecas personalizadas — controle de insumos, produtos, pedidos, clientes, fornecedores e relatórios.',
+    stack: ['Python', 'Tkinter/PyQt'],
+    images: [
+      canecasInicio,
+      canecasDashboard,
+      canecasInsumos,
+      canecasProdutos,
+      canecasPedidos,
+      canecasClientes,
+      canecasFornecedores,
+      canecasSeguranca,
+      canecasRelatorios,
+      canecasHistorico,
+    ],
+    codeUrl: 'https://github.com/seu-usuario/canecas-da-dri',
   },
   {
     id: 'proj-2',

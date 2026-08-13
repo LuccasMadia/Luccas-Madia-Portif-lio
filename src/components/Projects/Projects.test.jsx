@@ -45,4 +45,18 @@ describe('Projects', () => {
     const codeLink = screen.getByRole('link', { name: 'Código' });
     expect(codeLink).toHaveAttribute('href', 'https://github.com/user/a');
   });
+
+  it('does not render "Ver projeto" when the project has no liveUrl', () => {
+    const project = { ...projects[0], liveUrl: undefined };
+    render(<Projects projects={[project]} />);
+
+    expect(screen.queryByRole('link', { name: 'Ver projeto' })).not.toBeInTheDocument();
+  });
+
+  it('renders a screenshot carousel when the project has images', () => {
+    const project = { ...projects[0], images: ['a.png', 'b.png'] };
+    render(<Projects projects={[project]} />);
+
+    expect(screen.getByRole('img')).toHaveAttribute('src', 'a.png');
+  });
 });

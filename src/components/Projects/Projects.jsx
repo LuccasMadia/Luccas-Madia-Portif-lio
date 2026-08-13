@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { ProjectCarousel } from './ProjectCarousel';
 import './Projects.css';
 
 function ProjectCard({ project, index }) {
@@ -23,11 +24,17 @@ function ProjectCard({ project, index }) {
               <h3>{project.title}</h3>
             </div>
           </div>
-          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn--outline">
-            Ver projeto
-          </a>
+          {project.liveUrl && (
+            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn--outline">
+              Ver projeto
+            </a>
+          )}
         </div>
-        <div className={`project-card__visual project-card__visual--${index % 3}`} aria-hidden="true" />
+        {project.images ? (
+          <ProjectCarousel images={project.images} alt={project.title} />
+        ) : (
+          <div className={`project-card__visual project-card__visual--${index % 3}`} aria-hidden="true" />
+        )}
         <p className="project-card__description">{project.description}</p>
         <div className="project-card__footer">
           <ul className="project-card__stack">

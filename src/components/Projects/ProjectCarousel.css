@@ -1,0 +1,38 @@
+.project-carousel {
+  position: relative;
+  height: clamp(220px, 32vw, 380px);
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.project-carousel__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.project-carousel__dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.project-carousel__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(234, 255, 251, 0.3);
+}
+
+.project-carousel__dot--active {
+  background: var(--accent);
+}
