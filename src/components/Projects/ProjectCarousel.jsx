@@ -1,9 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import './ProjectCarousel.css';
 
-export function ProjectCarousel({ images, alt = '', interval = 3000 }) {
+export function ProjectCarousel({ images, alt = '', interval = 5000 }) {
   const [index, setIndex] = useState(0);
+
+  const goTo = useCallback(
+    (nextIndex) => {
+      setIndex((nextIndex + images.length) % images.length);
+    },
+    [images.length]
+  );
 
   useEffect(() => {
     if (images.length <= 1) return undefined;
@@ -13,7 +20,7 @@ export function ProjectCarousel({ images, alt = '', interval = 3000 }) {
     }, interval);
 
     return () => clearInterval(timer);
-  }, [images, interval]);
+  }, [images, interval, index]);
 
   return (
     <div className="project-carousel">
@@ -27,14 +34,32 @@ export function ProjectCarousel({ images, alt = '', interval = 3000 }) {
         transition={{ duration: 0.5 }}
       />
       {images.length > 1 && (
-        <div className="project-carousel__dots">
-          {images.map((_, i) => (
-            <span
-              key={i}
-              className={`project-carousel__dot ${i === index ? 'project-carousel__dot--active' : ''}`}
-            />
-          ))}
-        </div>
+        <>
+          <button
+            type="button"
+            className="project-carousel__arrow project-carousel__arrow--prev"
+            aria-label="Imagem anterior"
+            onClick={() => goTo(index - 1)}
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            className="project-carousel__arrow project-carousel__arrow--next"
+            aria-label="Próxima imagem"
+            onClick={() => goTo(index + 1)}
+          >
+            ›
+          </button>
+          <div className="project-carousel__dots">
+            {images.map((_, i) => (
+              <span
+                key={i}
+                className={`project-carousel__dot ${i === index ? 'project-carousel__dot--active' : ''}`}
+              />
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
