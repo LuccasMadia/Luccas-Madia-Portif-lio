@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { Projects } from './Projects';
 
 const projects = [
@@ -58,5 +58,18 @@ describe('Projects', () => {
     render(<Projects projects={[project]} />);
 
     expect(screen.getByRole('img')).toHaveAttribute('src', 'a.png');
+  });
+
+  it('opens the case study modal from "Ver projeto" when the project has no liveUrl', () => {
+    const project = {
+      ...projects[0],
+      liveUrl: undefined,
+      caseStudy: [{ titulo: 'Tela inicial', imagem: 'inicio.png', descricao: 'Descrição da tela inicial.' }],
+    };
+    render(<Projects projects={[project]} />);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Ver projeto' }));
+
+    expect(screen.getByText('Descrição da tela inicial.')).toBeInTheDocument();
   });
 });

@@ -66,6 +66,65 @@ export const projects = [
       canecasRelatorios,
       canecasHistorico,
     ],
+    caseStudy: [
+      {
+        titulo: 'Tela inicial',
+        imagem: canecasInicio,
+        descricao:
+          'Painel inicial com acesso rápido a todos os módulos do sistema — dashboard, insumos, produtos, pedidos, clientes, fornecedores, relatórios e histórico.',
+      },
+      {
+        titulo: 'Dashboard',
+        imagem: canecasDashboard,
+        descricao:
+          'Resumo do dia com alertas de estoque baixo, para a Dri saber exatamente o que precisa repor antes de fechar um pedido.',
+      },
+      {
+        titulo: 'Insumos',
+        imagem: canecasInsumos,
+        descricao:
+          'Controle de entradas e saídas de materiais — canecas em branco, tintas, embalagens — com o estoque sempre atualizado automaticamente.',
+      },
+      {
+        titulo: 'Produtos',
+        imagem: canecasProdutos,
+        descricao:
+          'Cadastro dos produtos finais com suas receitas de produção, mostrando quanto de cada insumo é consumido por unidade.',
+      },
+      {
+        titulo: 'Pedidos',
+        imagem: canecasPedidos,
+        descricao:
+          'Registro e acompanhamento de pedidos por status — pendente, em produção, entregue ou cancelado — com abertura de novo pedido, calendário de entregas e QR code individual para rastrear cada encomenda.',
+      },
+      {
+        titulo: 'Clientes',
+        imagem: canecasClientes,
+        descricao: 'Cadastro e histórico de clientes, para saber quem comprou o quê e quando.',
+      },
+      {
+        titulo: 'Fornecedores',
+        imagem: canecasFornecedores,
+        descricao: 'Cadastro dos fornecedores de insumos, centralizando contatos e origem dos materiais.',
+      },
+      {
+        titulo: 'Segurança por módulo',
+        imagem: canecasSeguranca,
+        descricao:
+          'Senha específica em abas sensíveis, restringindo o acesso a informações financeiras e de estoque.',
+      },
+      {
+        titulo: 'Relatórios',
+        imagem: canecasRelatorios,
+        descricao:
+          'Relatórios de pedidos, estoque de insumos e vendas por produto, com filtro por período e exportação em CSV.',
+      },
+      {
+        titulo: 'Histórico',
+        imagem: canecasHistorico,
+        descricao: 'Registro de todas as ações realizadas no sistema, com opção de reverter erros.',
+      },
+    ],
     codeUrl: 'https://github.com/seu-usuario/canecas-da-dri',
   },
   {

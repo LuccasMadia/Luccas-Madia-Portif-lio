@@ -1,9 +1,10 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ProjectCarousel } from './ProjectCarousel';
+import { CaseStudyModal } from './CaseStudyModal';
 import './Projects.css';
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project, index, onOpenCaseStudy }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -24,10 +25,16 @@ function ProjectCard({ project, index }) {
               <h3>{project.title}</h3>
             </div>
           </div>
-          {project.liveUrl && (
+          {project.liveUrl ? (
             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn--outline">
               Ver projeto
             </a>
+          ) : (
+            project.caseStudy && (
+              <button type="button" className="btn btn--outline" onClick={() => onOpenCaseStudy(project)}>
+                Ver projeto
+              </button>
+            )
           )}
         </div>
         {project.images ? (
@@ -52,15 +59,18 @@ function ProjectCard({ project, index }) {
 }
 
 export function Projects({ projects }) {
+  const [caseStudyProject, setCaseStudyProject] = useState(null);
+
   return (
     <section id="projetos" className="projects">
       <p className="section-label">Portfólio</p>
       <h2 className="section-title">Projetos</h2>
       <div className="projects__stack">
         {projects.map((project, index) => (
-          <ProjectCard project={project} index={index} key={project.id} />
+          <ProjectCard project={project} index={index} key={project.id} onOpenCaseStudy={setCaseStudyProject} />
         ))}
       </div>
+      <CaseStudyModal project={caseStudyProject} onClose={() => setCaseStudyProject(null)} />
     </section>
   );
 }
