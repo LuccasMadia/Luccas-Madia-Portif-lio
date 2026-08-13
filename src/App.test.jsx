@@ -1,9 +1,12 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import App from './App';
 
-describe('App scaffold', () => {
-  it('renders without crashing', () => {
-    render(<App />);
-    expect(screen.getByText('Portfólio em construção')).toBeInTheDocument();
+describe('App', () => {
+  it('renders every top-level section by id', () => {
+    const { container } = render(<App />);
+
+    ['sobre', 'servicos', 'experiencias', 'projetos', 'habilidades', 'contato'].forEach((id) => {
+      expect(container.querySelector(`#${id}`)).not.toBeNull();
+    });
   });
 });

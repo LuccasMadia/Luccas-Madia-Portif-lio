@@ -5,14 +5,6 @@ export function useTypingEffect(text, speed = 40) {
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    setDisplayedText('');
-    setIsDone(false);
-
-    if (!text) {
-      setIsDone(true);
-      return undefined;
-    }
-
     let index = 0;
     const interval = setInterval(() => {
       index += 1;
