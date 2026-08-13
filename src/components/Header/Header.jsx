@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useActiveSection } from '../../hooks/useActiveSection';
+import { scrollToSection } from '../../utils/scrollToSection';
 import './Header.css';
 
 const NAV_ITEMS = [
@@ -16,10 +17,16 @@ export function Header({ name }) {
 
   const closeMenu = () => setIsMenuOpen(false);
 
+  const handleNavClick = (event, id) => {
+    event.preventDefault();
+    scrollToSection(id);
+    closeMenu();
+  };
+
   return (
     <header className="header">
       <div className="header__inner">
-        <a href="#sobre" className="header__logo">
+        <a href="#sobre" className="header__logo" onClick={(event) => handleNavClick(event, 'sobre')}>
           {name}
         </a>
         <button
@@ -39,7 +46,7 @@ export function Header({ name }) {
               key={item.id}
               href={`#${item.id}`}
               className={`header__link ${activeId === item.id ? 'header__link--active' : ''}`}
-              onClick={closeMenu}
+              onClick={(event) => handleNavClick(event, item.id)}
             >
               {item.label}
             </a>

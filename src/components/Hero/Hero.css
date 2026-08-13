@@ -5,6 +5,8 @@
   align-items: center;
   padding: 8rem 1.5rem 4rem;
   overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .hero__glow {

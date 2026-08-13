@@ -70,6 +70,7 @@ export function Projects({ projects }) {
           <ProjectCard project={project} index={index} key={project.id} onOpenCaseStudy={setCaseStudyProject} />
         ))}
       </div>
+      <div className="projects__end-spacer" aria-hidden="true" />
       <CaseStudyModal project={caseStudyProject} onClose={() => setCaseStudyProject(null)} />
     </section>
   );

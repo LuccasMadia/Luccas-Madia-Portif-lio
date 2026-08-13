@@ -2,6 +2,12 @@
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 6rem 1.5rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .services__grid {

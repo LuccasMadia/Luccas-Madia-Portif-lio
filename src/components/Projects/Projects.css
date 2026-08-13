@@ -2,10 +2,16 @@
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 6rem 1.5rem 2rem;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .projects__stack {
   position: relative;
+}
+
+.projects__end-spacer {
+  height: 80vh;
 }
 
 .project-sticky {

@@ -39,3 +39,7 @@ if (!global.requestAnimationFrame) {
   global.requestAnimationFrame = (callback) => setTimeout(() => callback(Date.now()), 16);
   global.cancelAnimationFrame = (id) => clearTimeout(id);
 }
+
+if (!Element.prototype.scrollIntoView) {
+  Element.prototype.scrollIntoView = () => {};
+}

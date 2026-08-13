@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useTypingEffect } from '../../hooks/useTypingEffect';
+import { scrollToSection } from '../../utils/scrollToSection';
 import './Hero.css';
 
 export function Hero({ about }) {
@@ -26,10 +27,24 @@ export function Hero({ about }) {
         </p>
         <p className="hero__bio">{about.bio}</p>
         <div className="hero__actions">
-          <a href="#projetos" className="btn btn--primary">
+          <a
+            href="#projetos"
+            className="btn btn--primary"
+            onClick={(event) => {
+              event.preventDefault();
+              scrollToSection('projetos');
+            }}
+          >
             Ver projetos
           </a>
-          <a href="#contato" className="btn btn--outline">
+          <a
+            href="#contato"
+            className="btn btn--outline"
+            onClick={(event) => {
+              event.preventDefault();
+              scrollToSection('contato');
+            }}
+          >
             Fale comigo
           </a>
         </div>
