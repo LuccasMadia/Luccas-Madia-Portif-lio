@@ -11,6 +11,17 @@ if (!window.IntersectionObserver) {
   global.IntersectionObserver = IntersectionObserverMock;
 }
 
+class ResizeObserverMock {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+if (!window.ResizeObserver) {
+  window.ResizeObserver = ResizeObserverMock;
+  global.ResizeObserver = ResizeObserverMock;
+}
+
 if (!window.matchMedia) {
   window.matchMedia = (query) => ({
     matches: false,

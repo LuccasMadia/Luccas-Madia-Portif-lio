@@ -1,37 +1,90 @@
 .projects {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 6rem 1.5rem;
+  padding: 6rem 1.5rem 2rem;
 }
 
-.projects__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+.projects__stack {
+  position: relative;
+}
+
+.project-sticky {
+  position: sticky;
+  padding-bottom: 2rem;
 }
 
 .project-card {
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.5rem;
+  border-radius: 16px;
+  padding: 1.75rem;
   background: var(--bg-alt-2);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-.project-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 0 24px rgba(45, 212, 191, 0.15);
+.project-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
 }
 
-.project-card h3 {
-  margin-bottom: 0.5rem;
+.project-card__heading {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
 }
 
-.project-card p {
+.project-card__number {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+.project-card__label {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0 0 0.25rem;
+}
+
+.project-card__heading h3 {
+  font-size: 1.5rem;
+}
+
+.project-card__visual {
+  height: clamp(220px, 32vw, 380px);
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+}
+
+.project-card__visual--0 {
+  background: linear-gradient(135deg, #0f2f2a, #2dd4bf 140%);
+}
+
+.project-card__visual--1 {
+  background: linear-gradient(135deg, #0a0a0a, #14b8a6 160%);
+}
+
+.project-card__visual--2 {
+  background: radial-gradient(circle at 30% 30%, #2dd4bf, #050505 75%);
+}
+
+.project-card__description {
   color: var(--text-muted);
   font-size: 0.9rem;
   line-height: 1.5;
-  margin-bottom: 1rem;
+  margin: 0 0 1.25rem;
+}
+
+.project-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .project-card__stack {
@@ -40,7 +93,7 @@
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 0;
-  margin: 0 0 1.25rem;
+  margin: 0;
 }
 
 .project-card__stack li {
@@ -51,8 +104,14 @@
   padding: 0.2rem 0.6rem;
 }
 
-.project-card__actions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+@media (min-width: 769px) {
+  .project-sticky {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .project-card {
+    width: 100%;
+  }
 }

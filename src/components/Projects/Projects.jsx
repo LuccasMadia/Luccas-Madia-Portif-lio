@@ -1,32 +1,59 @@
-import { AnimatedSection } from '../AnimatedSection/AnimatedSection';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import './Projects.css';
+
+function ProjectCard({ project, index }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  });
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
+  const number = String(index + 1).padStart(2, '0');
+
+  return (
+    <div className="project-sticky" style={{ top: `${90 + index * 20}px` }} ref={ref}>
+      <motion.article className="project-card" style={{ scale, opacity }}>
+        <div className="project-card__header">
+          <div className="project-card__heading">
+            <span className="project-card__number">{number}</span>
+            <div>
+              <p className="project-card__label">Projeto</p>
+              <h3>{project.title}</h3>
+            </div>
+          </div>
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn--outline">
+            Ver projeto
+          </a>
+        </div>
+        <div className={`project-card__visual project-card__visual--${index % 3}`} aria-hidden="true" />
+        <p className="project-card__description">{project.description}</p>
+        <div className="project-card__footer">
+          <ul className="project-card__stack">
+            {project.stack.map((tech) => (
+              <li key={tech}>{tech}</li>
+            ))}
+          </ul>
+          <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" className="btn btn--ghost">
+            Código
+          </a>
+        </div>
+      </motion.article>
+    </div>
+  );
+}
 
 export function Projects({ projects }) {
   return (
-    <AnimatedSection id="projetos" className="projects">
+    <section id="projetos" className="projects">
       <p className="section-label">Portfólio</p>
       <h2 className="section-title">Projetos</h2>
-      <div className="projects__grid">
-        {projects.map((project) => (
-          <article className="project-card" key={project.id}>
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
-            <ul className="project-card__stack">
-              {project.stack.map((tech) => (
-                <li key={tech}>{tech}</li>
-              ))}
-            </ul>
-            <div className="project-card__actions">
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn--outline">
-                Ver projeto
-              </a>
-              <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" className="btn btn--ghost">
-                Código
-              </a>
-            </div>
-          </article>
+      <div className="projects__stack">
+        {projects.map((project, index) => (
+          <ProjectCard project={project} index={index} key={project.id} />
         ))}
       </div>
-    </AnimatedSection>
+    </section>
   );
 }
