@@ -1,6 +1,5 @@
 .project-carousel {
   position: relative;
-  height: clamp(220px, 32vw, 380px);
   border-radius: 12px;
   margin-bottom: 1.25rem;
   overflow: hidden;
@@ -9,12 +8,9 @@
 }
 
 .project-carousel__image {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
 }
 
 .project-carousel__arrow {
