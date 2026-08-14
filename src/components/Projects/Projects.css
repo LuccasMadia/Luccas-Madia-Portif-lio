@@ -16,7 +16,11 @@
 
 .project-sticky {
   position: sticky;
-  padding-bottom: 2rem;
+  top: 90px;
+}
+
+.project-sticky--hidden {
+  visibility: hidden;
 }
 
 .project-card {
@@ -114,7 +118,7 @@
   .project-sticky {
     min-height: 80vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .project-card {

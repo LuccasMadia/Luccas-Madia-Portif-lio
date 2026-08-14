@@ -24,7 +24,8 @@
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
-.service-card:hover {
+.service-card:hover,
+.service-card--active {
   border-color: var(--accent);
   transform: translateY(-4px);
 }

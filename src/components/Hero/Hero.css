@@ -47,18 +47,6 @@
   margin-bottom: 1.5rem;
 }
 
-.hero__cursor {
-  display: inline-block;
-  margin-left: 2px;
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
 .hero__bio {
   color: var(--text-muted);
   margin-bottom: 2rem;

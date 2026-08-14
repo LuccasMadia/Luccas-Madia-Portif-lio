@@ -13,6 +13,11 @@
   height: auto;
 }
 
+.project-carousel__image--fitted {
+  height: 100%;
+  object-fit: contain;
+}
+
 .project-carousel__arrow {
   position: absolute;
   top: 50%;

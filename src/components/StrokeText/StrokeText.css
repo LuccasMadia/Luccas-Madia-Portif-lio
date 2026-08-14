@@ -1,0 +1,21 @@
+.stroke-text {
+  position: relative;
+  display: inline-flex;
+  line-height: 1;
+}
+
+.stroke-text__letter {
+  position: relative;
+  display: inline-block;
+  white-space: pre;
+}
+
+.stroke-text__layer {
+  display: inline-block;
+  white-space: pre;
+}
+
+.stroke-text__layer--fill {
+  position: absolute;
+  inset: 0;
+}

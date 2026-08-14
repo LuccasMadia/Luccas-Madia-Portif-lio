@@ -15,7 +15,7 @@ export const about = {
   name: 'Luccas Madia',
   role: 'Desenvolvedor & Consultor de Gestão',
   tagline: 'Desenvolvimento, Administração e Gestão de Projetos',
-  bio: 'Texto de apresentação curto sobre você, sua trajetória e o que você faz. Substitua por um resumo real de 2-3 frases.',
+  bio: 'Desenvolvo sites e sistemas sob medida, com foco em automatizar processos e simplificar a rotina de pequenas e médias empresas. Uno experiência em desenvolvimento a uma visão de gestão, entregando soluções que funcionam bem e geram resultado real para o negócio.',
   yearsExperience: 3,
   projectsDelivered: 12,
 };

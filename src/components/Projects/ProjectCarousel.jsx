@@ -4,6 +4,13 @@ import './ProjectCarousel.css';
 
 export function ProjectCarousel({ images, alt = '', interval = 5000 }) {
   const [index, setIndex] = useState(0);
+  const [aspectRatio, setAspectRatio] = useState(null);
+
+  useEffect(() => {
+    const probe = new Image();
+    probe.onload = () => setAspectRatio(`${probe.naturalWidth} / ${probe.naturalHeight}`);
+    probe.src = images[0];
+  }, [images]);
 
   const goTo = useCallback(
     (nextIndex) => {
@@ -23,12 +30,12 @@ export function ProjectCarousel({ images, alt = '', interval = 5000 }) {
   }, [images, interval, index]);
 
   return (
-    <div className="project-carousel">
+    <div className="project-carousel" style={aspectRatio ? { aspectRatio } : undefined}>
       <motion.img
         key={index}
         src={images[index]}
         alt={`${alt} — captura de tela ${index + 1}`}
-        className="project-carousel__image"
+        className={`project-carousel__image${aspectRatio ? ' project-carousel__image--fitted' : ''}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}

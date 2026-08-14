@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Hero } from './Hero';
 
 const about = {
@@ -8,16 +8,15 @@ const about = {
 };
 
 describe('Hero', () => {
-  it('renders the name, bio and CTAs', async () => {
+  it('renders the name, tagline, bio and CTAs', () => {
     render(<Hero about={about} />);
 
     expect(screen.getByRole('heading', { name: 'Luccas Madia' })).toBeInTheDocument();
+    expect(
+      screen.getByText((_content, element) => element.className === 'fold-text' && element.textContent === 'Dev')
+    ).toBeInTheDocument();
     expect(screen.getByText('Bio de teste.')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Ver projetos' })).toHaveAttribute('href', '#projetos');
     expect(screen.getByRole('link', { name: 'Fale comigo' })).toHaveAttribute('href', '#contato');
-
-    await waitFor(() => {
-      expect(screen.getByText('Dev', { exact: false })).toBeInTheDocument();
-    });
   });
 });

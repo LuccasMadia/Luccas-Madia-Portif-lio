@@ -1,0 +1,106 @@
+.logoloop {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.logoloop__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.logoloop--vertical .logoloop__track {
+  flex-direction: column;
+  height: max-content;
+}
+
+.logoloop__list {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: var(--logoloop-gap, 32px);
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--logoloop-gap, 32px) 0 0;
+}
+
+.logoloop--vertical .logoloop__list {
+  flex-direction: column;
+  padding: 0 0 var(--logoloop-gap, 32px) 0;
+}
+
+.logoloop__item {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoloop__item img {
+  display: block;
+  width: auto;
+  height: var(--logoloop-logoHeight, 28px);
+}
+
+.logoloop__node {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: var(--logoloop-logoHeight, 28px);
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.logoloop__link {
+  display: inline-flex;
+}
+
+.logoloop--scale-hover .logoloop__item:hover .logoloop__node,
+.logoloop--scale-hover .logoloop__item:hover img {
+  transform: scale(1.15);
+}
+
+.logoloop--scale-hover .logoloop__item:hover .logoloop__node {
+  color: var(--accent);
+}
+
+.logoloop--fade::before,
+.logoloop--fade::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 72px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.logoloop--fade::before {
+  left: 0;
+  background: linear-gradient(to right, var(--logoloop-fadeColor, var(--bg)), transparent);
+}
+
+.logoloop--fade::after {
+  right: 0;
+  background: linear-gradient(to left, var(--logoloop-fadeColor, var(--bg)), transparent);
+}
+
+.logoloop--vertical.logoloop--fade::before,
+.logoloop--vertical.logoloop--fade::after {
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 72px;
+}
+
+.logoloop--vertical.logoloop--fade::before {
+  top: 0;
+  bottom: auto;
+  background: linear-gradient(to bottom, var(--logoloop-fadeColor, var(--bg)), transparent);
+}
+
+.logoloop--vertical.logoloop--fade::after {
+  top: auto;
+  bottom: 0;
+  background: linear-gradient(to top, var(--logoloop-fadeColor, var(--bg)), transparent);
+}

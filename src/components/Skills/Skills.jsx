@@ -1,7 +1,29 @@
+import {
+  SiReact,
+  SiJavascript,
+  SiNodedotjs,
+  SiNextdotjs,
+  SiPython,
+  SiMysql,
+  SiHtml5,
+  SiCss,
+} from 'react-icons/si';
 import { AnimatedSection } from '../AnimatedSection/AnimatedSection';
 import { AnimatedCounter } from '../AnimatedCounter/AnimatedCounter';
+import { LogoLoop } from '../LogoLoop/LogoLoop';
 import { iconMap } from '../../utils/icons';
 import './Skills.css';
+
+const languages = [
+  { node: <SiReact />, title: 'React' },
+  { node: <SiJavascript />, title: 'JavaScript' },
+  { node: <SiNodedotjs />, title: 'Node.js' },
+  { node: <SiNextdotjs />, title: 'Next.js' },
+  { node: <SiPython />, title: 'Python' },
+  { node: <SiMysql />, title: 'MySQL' },
+  { node: <SiHtml5 />, title: 'HTML5' },
+  { node: <SiCss />, title: 'CSS3' },
+];
 
 export function Skills({ skills, about }) {
   return (
@@ -18,6 +40,22 @@ export function Skills({ skills, about }) {
           <AnimatedCounter target={about.projectsDelivered} suffix="+" />
           <p>projetos entregues</p>
         </div>
+      </div>
+
+      <div className="skills__group">
+        <h3>Tecnologias</h3>
+        <LogoLoop
+          logos={languages}
+          speed={60}
+          direction="left"
+          logoHeight={32}
+          gap={56}
+          pauseOnHover
+          fadeOut
+          fadeOutColor="var(--bg)"
+          scaleOnHover
+          ariaLabel="Linguagens e tecnologias utilizadas"
+        />
       </div>
 
       {skills.map((group) => (

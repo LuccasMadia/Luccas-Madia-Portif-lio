@@ -1,22 +1,20 @@
-import { useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ProjectCarousel } from './ProjectCarousel';
+import { useEffect, useRef, useState } from 'react';
 import { CaseStudyModal } from './CaseStudyModal';
+import { ProjectCarousel } from './ProjectCarousel';
 import './Projects.css';
 
-function ProjectCard({ project, index, onOpenCaseStudy }) {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end start'],
-  });
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
+const STICKY_OFFSET = 90;
+
+function ProjectCard({ project, index, onOpenCaseStudy, hidden, setCardRef }) {
   const number = String(index + 1).padStart(2, '0');
 
   return (
-    <div className="project-sticky" style={{ top: `${90 + index * 20}px` }} ref={ref}>
-      <motion.article className="project-card" style={{ scale, opacity }}>
+    <div
+      className={`project-sticky${hidden ? ' project-sticky--hidden' : ''}`}
+      style={{ zIndex: index + 1 }}
+      ref={setCardRef}
+    >
+      <article className="project-card">
         <div className="project-card__header">
           <div className="project-card__heading">
             <span className="project-card__number">{number}</span>
@@ -53,13 +51,35 @@ function ProjectCard({ project, index, onOpenCaseStudy }) {
             Código
           </a>
         </div>
-      </motion.article>
+      </article>
     </div>
   );
 }
 
 export function Projects({ projects }) {
   const [caseStudyProject, setCaseStudyProject] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const cardRefs = useRef([]);
+
+  useEffect(() => {
+    function updateActiveIndex() {
+      let active = 0;
+      cardRefs.current.forEach((el, i) => {
+        if (el && el.getBoundingClientRect().top <= STICKY_OFFSET + 1) {
+          active = i;
+        }
+      });
+      setActiveIndex(active);
+    }
+
+    updateActiveIndex();
+    window.addEventListener('scroll', updateActiveIndex, { passive: true });
+    window.addEventListener('resize', updateActiveIndex);
+    return () => {
+      window.removeEventListener('scroll', updateActiveIndex);
+      window.removeEventListener('resize', updateActiveIndex);
+    };
+  }, [projects]);
 
   return (
     <section id="projetos" className="projects">
@@ -67,7 +87,16 @@ export function Projects({ projects }) {
       <h2 className="section-title">Projetos</h2>
       <div className="projects__stack">
         {projects.map((project, index) => (
-          <ProjectCard project={project} index={index} key={project.id} onOpenCaseStudy={setCaseStudyProject} />
+          <ProjectCard
+            project={project}
+            index={index}
+            key={project.id}
+            onOpenCaseStudy={setCaseStudyProject}
+            hidden={index < activeIndex}
+            setCardRef={(el) => {
+              cardRefs.current[index] = el;
+            }}
+          />
         ))}
       </div>
       <div className="projects__end-spacer" aria-hidden="true" />
