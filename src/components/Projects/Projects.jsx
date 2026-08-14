@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { CaseStudyModal } from './CaseStudyModal';
-import { ProjectCarousel } from './ProjectCarousel';
 import './Projects.css';
 
 const STICKY_OFFSET = 90;
 
 function ProjectCard({ project, index, onOpenCaseStudy, hidden, setCardRef }) {
   const number = String(index + 1).padStart(2, '0');
+  const hasGallery = Boolean(project.images?.length || project.caseStudy?.length);
+  const thumbnail = project.images?.[0] ?? project.caseStudy?.[0]?.imagem;
 
   return (
     <div
@@ -20,23 +21,27 @@ function ProjectCard({ project, index, onOpenCaseStudy, hidden, setCardRef }) {
             <span className="project-card__number">{number}</span>
             <div>
               <p className="project-card__label">Projeto</p>
-              <h3>{project.title}</h3>
+              <h3>
+                {project.title}
+                {project.status && <span className="project-card__status">{project.status}</span>}
+              </h3>
             </div>
           </div>
-          {project.liveUrl ? (
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn--outline">
-              Ver projeto
-            </a>
-          ) : (
-            project.caseStudy && (
+          <div className="project-card__actions">
+            {hasGallery && (
               <button type="button" className="btn btn--outline" onClick={() => onOpenCaseStudy(project)}>
                 Ver projeto
               </button>
-            )
-          )}
+            )}
+            {project.liveUrl && (
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn--outline">
+                Visitar site
+              </a>
+            )}
+          </div>
         </div>
-        {project.images ? (
-          <ProjectCarousel images={project.images} alt={project.title} />
+        {thumbnail ? (
+          <img src={thumbnail} alt={project.title} loading="lazy" className="project-card__thumbnail" />
         ) : (
           <div className={`project-card__visual project-card__visual--${index % 3}`} aria-hidden="true" />
         )}
@@ -47,9 +52,11 @@ function ProjectCard({ project, index, onOpenCaseStudy, hidden, setCardRef }) {
               <li key={tech}>{tech}</li>
             ))}
           </ul>
-          <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" className="btn btn--ghost">
-            Código
-          </a>
+          {project.codeUrl && (
+            <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" className="btn btn--ghost">
+              Código
+            </a>
+          )}
         </div>
       </article>
     </div>
@@ -85,6 +92,11 @@ export function Projects({ projects }) {
     <section id="projetos" className="projects">
       <p className="section-label">Portfólio</p>
       <h2 className="section-title">Projetos</h2>
+      <p className="projects__note">
+        Alguns projetos não estão listados aqui por serem sistemas internos de empresas (como controle de
+        agendamento de exames, controle de férias, entre outros) que lidam com informações sensíveis e por isso
+        não podem ser exibidos publicamente.
+      </p>
       <div className="projects__stack">
         {projects.map((project, index) => (
           <ProjectCard

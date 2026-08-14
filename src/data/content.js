@@ -11,6 +11,27 @@ import canecasSeguranca from '../assets/projects/canecas/canecas-07-seguranca.pn
 import canecasRelatorios from '../assets/projects/canecas/canecas-08-relatorios.png';
 import canecasHistorico from '../assets/projects/canecas/canecas-09-historico.png';
 
+import rangoHero from '../assets/projects/rango-do-bicho/rango-00-hero.png';
+import rangoProdutos from '../assets/projects/rango-do-bicho/rango-01-produtos.png';
+import rangoHistoria from '../assets/projects/rango-do-bicho/rango-02-historia.png';
+import rango03 from '../assets/projects/rango-do-bicho/rango-03.png';
+import rango04 from '../assets/projects/rango-do-bicho/rango-04.png';
+import rango05 from '../assets/projects/rango-do-bicho/rango-05.png';
+import rango06 from '../assets/projects/rango-do-bicho/rango-06.png';
+import rango07 from '../assets/projects/rango-do-bicho/rango-07.png';
+import rango08 from '../assets/projects/rango-do-bicho/rango-08.png';
+import rango09 from '../assets/projects/rango-do-bicho/rango-09.png';
+import rango10 from '../assets/projects/rango-do-bicho/rango-10.png';
+import rango11 from '../assets/projects/rango-do-bicho/rango-11.png';
+import rango12 from '../assets/projects/rango-do-bicho/rango-12.png';
+
+import popyHero from '../assets/projects/popy/popy-00-hero.png';
+import popy01 from '../assets/projects/popy/popy-01.png';
+import popy02 from '../assets/projects/popy/popy-02.png';
+import popy03 from '../assets/projects/popy/popy-03.png';
+import popy04 from '../assets/projects/popy/popy-04.png';
+import popy05 from '../assets/projects/popy/popy-05.png';
+
 export const about = {
   name: 'Luccas Madia',
   role: 'Desenvolvedor & Consultor de Gestão',
@@ -129,19 +150,37 @@ export const projects = [
   },
   {
     id: 'proj-2',
-    title: 'Projeto Dois',
-    description: 'Breve descrição do projeto e o problema que ele resolve.',
-    stack: ['Vite', 'Tailwind'],
-    liveUrl: 'https://example.com',
-    codeUrl: 'https://github.com/seu-usuario/projeto-dois',
+    title: 'Rango do Bicho',
+    description:
+      'Site institucional e catálogo de produtos para uma casa de ração de bairro — vitrine de produtos com filtro por categoria, carrinho e pedido direto via WhatsApp.',
+    stack: ['Next.js', 'Supabase'],
+    status: 'Em desenvolvimento',
+    liveUrl: 'https://rango-do-bicho-site.vercel.app/',
+    images: [
+      rangoHero,
+      rangoProdutos,
+      rangoHistoria,
+      rango03,
+      rango04,
+      rango05,
+      rango06,
+      rango07,
+      rango08,
+      rango09,
+      rango10,
+      rango11,
+      rango12,
+    ],
   },
   {
     id: 'proj-3',
-    title: 'Projeto Três',
-    description: 'Breve descrição do projeto e o problema que ele resolve.',
-    stack: ['Python', 'Django'],
-    liveUrl: 'https://example.com',
-    codeUrl: 'https://github.com/seu-usuario/projeto-tres',
+    title: 'Popy',
+    description:
+      'Landing page para uma marca de sucos naturais captar parceiros comerciais — apresentação dos sabores, diferenciais da marca e formulário de contato, com imagens de produto geradas por IA.',
+    stack: ['Next.js', 'Geração de imagens com IA'],
+    status: 'Em desenvolvimento',
+    liveUrl: 'https://popy-ladinpage.vercel.app/',
+    images: [popyHero, popy01, popy02, popy03, popy04, popy05],
   },
 ];
 

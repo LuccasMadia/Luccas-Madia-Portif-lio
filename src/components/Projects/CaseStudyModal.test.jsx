@@ -39,4 +39,12 @@ describe('CaseStudyModal', () => {
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(onClose).toHaveBeenCalled();
   });
+
+  it('falls back to a screenshot carousel when there is no caseStudy', () => {
+    const imagesOnlyProject = { title: 'Rango do Bicho', images: ['a.png', 'b.png'] };
+    render(<CaseStudyModal project={imagesOnlyProject} onClose={() => {}} />);
+
+    expect(screen.getByRole('heading', { name: 'Rango do Bicho' })).toBeInTheDocument();
+    expect(screen.getByRole('img')).toHaveAttribute('src', 'a.png');
+  });
 });

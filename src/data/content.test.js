@@ -31,8 +31,10 @@ describe('content data', () => {
         id: expect.any(String),
         title: expect.any(String),
         description: expect.any(String),
-        codeUrl: expect.any(String),
       });
+      if (project.codeUrl !== undefined) {
+        expect(project.codeUrl).toEqual(expect.any(String));
+      }
       expect(Array.isArray(project.stack)).toBe(true);
       expect(project.stack.length).toBeGreaterThan(0);
     });

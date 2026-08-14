@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { ProjectCarousel } from './ProjectCarousel';
 import './CaseStudyModal.css';
 
 export function CaseStudyModal({ project, onClose }) {
@@ -41,17 +42,21 @@ export function CaseStudyModal({ project, onClose }) {
             <p className="section-label">Projeto</p>
             <h3 className="case-study-modal__title">{project.title}</h3>
 
-            <div className="case-study-modal__list">
-              {project.caseStudy.map((area) => (
-                <div key={area.titulo} className="case-study-modal__item">
-                  <img src={area.imagem} alt={area.titulo} loading="lazy" className="case-study-modal__image" />
-                  <div className="case-study-modal__text">
-                    <h4>{area.titulo}</h4>
-                    <p>{area.descricao}</p>
+            {project.caseStudy ? (
+              <div className="case-study-modal__list">
+                {project.caseStudy.map((area) => (
+                  <div key={area.titulo} className="case-study-modal__item">
+                    <img src={area.imagem} alt={area.titulo} loading="lazy" className="case-study-modal__image" />
+                    <div className="case-study-modal__text">
+                      <h4>{area.titulo}</h4>
+                      <p>{area.descricao}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <ProjectCarousel images={project.images} alt={project.title} />
+            )}
           </motion.div>
         </motion.div>
       )}

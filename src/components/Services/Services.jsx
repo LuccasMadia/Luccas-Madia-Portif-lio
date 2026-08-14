@@ -3,6 +3,7 @@ import { AnimatedSection } from '../AnimatedSection/AnimatedSection';
 import { iconMap } from '../../utils/icons';
 import './Services.css';
 
+const REVEAL_START_DELAY = 500;
 const REVEAL_STEP = 400;
 const REVEAL_HOLD = 350;
 
@@ -14,10 +15,13 @@ export function Services({ services }) {
     if (!hasEntered) return;
 
     const timers = services.map((_, index) =>
-      setTimeout(() => setPreviewIndex(index), index * REVEAL_STEP)
+      setTimeout(() => setPreviewIndex(index), REVEAL_START_DELAY + index * REVEAL_STEP)
     );
     timers.push(
-      setTimeout(() => setPreviewIndex(null), (services.length - 1) * REVEAL_STEP + REVEAL_HOLD)
+      setTimeout(
+        () => setPreviewIndex(null),
+        REVEAL_START_DELAY + (services.length - 1) * REVEAL_STEP + REVEAL_HOLD
+      )
     );
 
     return () => timers.forEach(clearTimeout);
