@@ -1,6 +1,7 @@
 import {
   FaCode,
   FaChartLine,
+  FaChartBar,
   FaRobot,
   FaClipboardList,
   FaReact,
@@ -11,10 +12,12 @@ import {
   FaGitAlt,
   FaFigma,
 } from 'react-icons/fa';
+import { SiNotion } from 'react-icons/si';
 
 export const iconMap = {
   FaCode,
   FaChartLine,
+  FaChartBar,
   FaRobot,
   FaClipboardList,
   FaReact,
@@ -24,4 +27,5 @@ export const iconMap = {
   FaFileExcel,
   FaGitAlt,
   FaFigma,
+  SiNotion,
 };

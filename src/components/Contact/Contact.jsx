@@ -1,4 +1,4 @@
-import { FaWhatsapp, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaWhatsapp, FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
 import { AnimatedSection } from '../AnimatedSection/AnimatedSection';
 import './Contact.css';
 
@@ -6,6 +6,7 @@ const CHANNELS = [
   { key: 'whatsapp', label: 'WhatsApp', Icon: FaWhatsapp },
   { key: 'linkedin', label: 'LinkedIn', Icon: FaLinkedin },
   { key: 'github', label: 'GitHub', Icon: FaGithub },
+  { key: 'instagram', label: 'Instagram', Icon: FaInstagram },
 ];
 
 export function Contact({ socials }) {

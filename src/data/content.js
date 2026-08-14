@@ -147,18 +147,11 @@ export const projects = [
 
 export const skills = [
   {
-    category: 'Desenvolvimento',
-    items: [
-      { name: 'JavaScript', icon: 'FaJs' },
-      { name: 'React', icon: 'FaReact' },
-      { name: 'Node.js', icon: 'FaNodeJs' },
-    ],
-  },
-  {
     category: 'Gestão',
     items: [
       { name: 'Gestão de Projetos', icon: 'FaTasks' },
       { name: 'Excel Avançado', icon: 'FaFileExcel' },
+      { name: 'Power BI', icon: 'FaChartBar' },
     ],
   },
   {
@@ -166,6 +159,7 @@ export const skills = [
     items: [
       { name: 'Git', icon: 'FaGitAlt' },
       { name: 'Figma', icon: 'FaFigma' },
+      { name: 'Notion', icon: 'SiNotion' },
     ],
   },
 ];
@@ -174,4 +168,5 @@ export const socials = {
   whatsapp: 'https://wa.me/5500000000000',
   linkedin: 'https://linkedin.com/in/seu-usuario',
   github: 'https://github.com/seu-usuario',
+  instagram: 'https://www.instagram.com/madia.consultoria/',
 };
