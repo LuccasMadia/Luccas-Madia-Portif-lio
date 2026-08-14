@@ -152,6 +152,30 @@
   padding: 0.2rem 0.6rem;
 }
 
+.project-card__code-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 1.1rem;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.project-card__code-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.project-card__code-link--pending {
+  color: var(--text-muted);
+  opacity: 0.5;
+  cursor: default;
+}
+
 @media (min-width: 769px) {
   .project-sticky {
     min-height: 80vh;

@@ -21,7 +21,6 @@ describe('Skills', () => {
   it('renders the stat labels', () => {
     render(<Skills skills={skills} about={about} />);
 
-    expect(screen.getByText('anos de experiência')).toBeInTheDocument();
     expect(screen.getByText('projetos entregues')).toBeInTheDocument();
   });
 });

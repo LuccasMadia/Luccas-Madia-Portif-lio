@@ -7,7 +7,6 @@ describe('content data', () => {
       role: expect.any(String),
       tagline: expect.any(String),
       bio: expect.any(String),
-      yearsExperience: expect.any(Number),
       projectsDelivered: expect.any(Number),
     });
   });

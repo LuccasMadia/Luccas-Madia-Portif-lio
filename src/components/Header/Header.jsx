@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import logoMark from '../../assets/brand/logo-mark.png';
 import { useActiveSection } from '../../hooks/useActiveSection';
 import { scrollToSection } from '../../utils/scrollToSection';
 import './Header.css';
@@ -27,7 +28,7 @@ export function Header({ name }) {
     <header className="header">
       <div className="header__inner">
         <a href="#sobre" className="header__logo" onClick={(event) => handleNavClick(event, 'sobre')}>
-          {name}
+          <img src={logoMark} alt={name} className="header__logo-image" />
         </a>
         <button
           type="button"

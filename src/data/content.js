@@ -37,8 +37,7 @@ export const about = {
   role: 'Desenvolvedor & Consultor de Gestão',
   tagline: 'Desenvolvimento, Administração e Gestão de Projetos',
   bio: 'Desenvolvo sites e sistemas sob medida, com foco em automatizar processos e simplificar a rotina de pequenas e médias empresas. Uno experiência em desenvolvimento a uma visão de gestão, entregando soluções que funcionam bem e geram resultado real para o negócio.',
-  yearsExperience: 3,
-  projectsDelivered: 12,
+  projectsDelivered:6,
 };
 
 export const services = [
@@ -73,7 +72,7 @@ export const projects = [
     id: 'proj-1',
     title: 'Canecas da Dri',
     description:
-      'Sistema desktop de gestão de estoque para uma loja de canecas personalizadas — controle de insumos, produtos, pedidos, clientes, fornecedores e relatórios.',
+      'Sistema desktop de gestão de estoque para uma loja de canecas personalizadas, com controle de insumos, produtos, pedidos, clientes, fornecedores e relatórios.',
     stack: ['Python', 'Tkinter/PyQt'],
     images: [
       canecasInicio,
@@ -92,7 +91,7 @@ export const projects = [
         titulo: 'Tela inicial',
         imagem: canecasInicio,
         descricao:
-          'Painel inicial com acesso rápido a todos os módulos do sistema — dashboard, insumos, produtos, pedidos, clientes, fornecedores, relatórios e histórico.',
+          'Painel inicial com acesso rápido a todos os módulos do sistema: dashboard, insumos, produtos, pedidos, clientes, fornecedores, relatórios e histórico.',
       },
       {
         titulo: 'Dashboard',
@@ -104,7 +103,7 @@ export const projects = [
         titulo: 'Insumos',
         imagem: canecasInsumos,
         descricao:
-          'Controle de entradas e saídas de materiais — canecas em branco, tintas, embalagens — com o estoque sempre atualizado automaticamente.',
+          'Controle de entradas e saídas de materiais (canecas em branco, tintas, embalagens), com o estoque sempre atualizado automaticamente.',
       },
       {
         titulo: 'Produtos',
@@ -116,7 +115,7 @@ export const projects = [
         titulo: 'Pedidos',
         imagem: canecasPedidos,
         descricao:
-          'Registro e acompanhamento de pedidos por status — pendente, em produção, entregue ou cancelado — com abertura de novo pedido, calendário de entregas e QR code individual para rastrear cada encomenda.',
+          'Registro e acompanhamento de pedidos por status (pendente, em produção, entregue ou cancelado), com abertura de novo pedido, calendário de entregas e QR code individual para rastrear cada encomenda.',
       },
       {
         titulo: 'Clientes',
@@ -152,10 +151,11 @@ export const projects = [
     id: 'proj-2',
     title: 'Rango do Bicho',
     description:
-      'Site institucional e catálogo de produtos para uma casa de ração de bairro — vitrine de produtos com filtro por categoria, carrinho e pedido direto via WhatsApp.',
-    stack: ['Next.js', 'Supabase'],
+      'Site institucional e catálogo de produtos para uma casa de ração de bairro, com vitrine de produtos filtrável por categoria, carrinho e pedido direto via WhatsApp.',
+    stack: ['Next.js', 'Banco de Dados'],
     status: 'Em desenvolvimento',
     liveUrl: 'https://rango-do-bicho-site.vercel.app/',
+    codeUrl: 'https://github.com/LuccasMadia/Rango-do-bicho-site.git',
     images: [
       rangoHero,
       rangoProdutos,
@@ -176,10 +176,11 @@ export const projects = [
     id: 'proj-3',
     title: 'Popy',
     description:
-      'Landing page para uma marca de sucos naturais captar parceiros comerciais — apresentação dos sabores, diferenciais da marca e formulário de contato, com imagens de produto geradas por IA.',
+      'Landing page para uma marca de sucos naturais captar parceiros comerciais, com apresentação dos sabores, diferenciais da marca e formulário de contato, usando imagens de produto geradas por IA.',
     stack: ['Next.js', 'Geração de imagens com IA'],
     status: 'Em desenvolvimento',
     liveUrl: 'https://popy-ladinpage.vercel.app/',
+    codeUrl: 'https://github.com/LuccasMadia/Popy-Ladinpage.git',
     images: [popyHero, popy01, popy02, popy03, popy04, popy05],
   },
 ];
@@ -204,8 +205,8 @@ export const skills = [
 ];
 
 export const socials = {
-  whatsapp: 'https://wa.me/5500000000000',
-  linkedin: 'https://linkedin.com/in/seu-usuario',
-  github: 'https://github.com/seu-usuario',
+  whatsapp: 'https://wa.me/5567998746300',
+  linkedin: 'https://linkedin.com/in/LuccasMadia',
+  github: 'https://github.com/LuccasMadia',
   instagram: 'https://www.instagram.com/madia.consultoria/',
 };

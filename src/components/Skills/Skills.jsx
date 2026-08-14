@@ -33,10 +33,6 @@ export function Skills({ skills, about }) {
 
       <div className="skills__stats">
         <div className="skills__stat">
-          <AnimatedCounter target={about.yearsExperience} suffix="+" />
-          <p>anos de experiência</p>
-        </div>
-        <div className="skills__stat">
           <AnimatedCounter target={about.projectsDelivered} suffix="+" />
           <p>projetos entregues</p>
         </div>

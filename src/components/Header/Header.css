@@ -19,9 +19,14 @@
 }
 
 .header__logo {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  color: var(--text);
+  display: flex;
+  align-items: center;
+}
+
+.header__logo-image {
+  display: block;
+  height: 32px;
+  width: auto;
 }
 
 .header__nav {

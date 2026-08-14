@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import { FaGithub } from 'react-icons/fa';
 import { CaseStudyModal } from './CaseStudyModal';
 import './Projects.css';
 
 const STICKY_OFFSET = 90;
+const REVEAL_BUFFER = 650;
 
 function ProjectCard({ project, index, onOpenCaseStudy, hidden, setCardRef }) {
   const number = String(index + 1).padStart(2, '0');
@@ -52,10 +54,20 @@ function ProjectCard({ project, index, onOpenCaseStudy, hidden, setCardRef }) {
               <li key={tech}>{tech}</li>
             ))}
           </ul>
-          {project.codeUrl && (
-            <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" className="btn btn--ghost">
-              Código
+          {project.codeUrl ? (
+            <a
+              href={project.codeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ver código no GitHub"
+              className="project-card__code-link"
+            >
+              <FaGithub aria-hidden="true" />
             </a>
+          ) : (
+            <span aria-label="Código em breve" className="project-card__code-link project-card__code-link--pending">
+              <FaGithub aria-hidden="true" />
+            </span>
           )}
         </div>
       </article>
@@ -67,15 +79,25 @@ export function Projects({ projects }) {
   const [caseStudyProject, setCaseStudyProject] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const cardRefs = useRef([]);
+  const stackRef = useRef(null);
 
   useEffect(() => {
     function updateActiveIndex() {
+      const stack = stackRef.current;
+      if (!stack) return;
+
+      const stackDocTop = stack.getBoundingClientRect().top + window.scrollY;
+      let cursor = stackDocTop;
       let active = 0;
+
       cardRefs.current.forEach((el, i) => {
-        if (el && el.getBoundingClientRect().top <= STICKY_OFFSET + 1) {
+        if (!el) return;
+        if (window.scrollY + STICKY_OFFSET >= cursor + REVEAL_BUFFER) {
           active = i;
         }
+        cursor += el.offsetHeight;
       });
+
       setActiveIndex(active);
     }
 
@@ -97,7 +119,7 @@ export function Projects({ projects }) {
         agendamento de exames, controle de férias, entre outros) que lidam com informações sensíveis e por isso
         não podem ser exibidos publicamente.
       </p>
-      <div className="projects__stack">
+      <div className="projects__stack" ref={stackRef}>
         {projects.map((project, index) => (
           <ProjectCard
             project={project}

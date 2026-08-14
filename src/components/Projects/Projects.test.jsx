@@ -42,8 +42,16 @@ describe('Projects', () => {
     expect(liveLink).toHaveAttribute('target', '_blank');
     expect(liveLink).toHaveAttribute('rel', 'noopener noreferrer');
 
-    const codeLink = screen.getByRole('link', { name: 'Código' });
+    const codeLink = screen.getByRole('link', { name: 'Ver código no GitHub' });
     expect(codeLink).toHaveAttribute('href', 'https://github.com/user/a');
+  });
+
+  it('renders a pending GitHub icon when the project has no codeUrl yet', () => {
+    const project = { ...projects[0], codeUrl: undefined };
+    render(<Projects projects={[project]} />);
+
+    expect(screen.queryByRole('link', { name: 'Ver código no GitHub' })).not.toBeInTheDocument();
+    expect(screen.getByLabelText('Código em breve')).toBeInTheDocument();
   });
 
   it('does not render "Visitar site" when the project has no liveUrl', () => {
