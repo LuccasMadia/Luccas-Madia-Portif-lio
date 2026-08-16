@@ -1,11 +1,7 @@
 .services {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 6rem 1.5rem;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 4rem 1.5rem;
 }
 
 .services__grid {

@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
-export function useAnimatedCounter(target, duration = 1200) {
+export function useAnimatedCounter(target, duration = 1200, { start = true, delay = 0 } = {}) {
   const [value, setValue] = useState(0);
   const startRef = useRef(null);
 
   useEffect(() => {
+    if (!start) return undefined;
+
     let frame;
     startRef.current = null;
 
@@ -18,9 +20,15 @@ export function useAnimatedCounter(target, duration = 1200) {
       }
     };
 
-    frame = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(frame);
-  }, [target, duration]);
+    const timer = setTimeout(() => {
+      frame = requestAnimationFrame(step);
+    }, delay);
+
+    return () => {
+      clearTimeout(timer);
+      cancelAnimationFrame(frame);
+    };
+  }, [target, duration, start, delay]);
 
   return value;
 }

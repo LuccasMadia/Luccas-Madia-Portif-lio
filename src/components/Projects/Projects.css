@@ -1,7 +1,7 @@
 .projects {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 6rem 1.5rem 2rem;
+  padding: 4rem 1.5rem 0.5rem;
 }
 
 .projects__note {
@@ -17,7 +17,7 @@
 }
 
 .projects__end-spacer {
-  height: 80vh;
+  height: 35vh;
 }
 
 .project-sticky {

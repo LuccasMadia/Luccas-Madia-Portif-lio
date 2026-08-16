@@ -6,12 +6,13 @@ import './Hero.css';
 
 const NAME_ANIMATION = { drawDuration: 1.6, fillDelay: 0.2, stagger: 0.05 };
 const TAGLINE_ANIMATION = { duration: 0.4, stagger: 0.02, splitBy: 'char' };
+const TAGLINE_OVERLAP = 0.6;
 
 export function Hero({ about }) {
   const { scrollY } = useScroll();
   const glowY = useTransform(scrollY, [0, 400], [0, 120]);
 
-  const taglineStart = getStrokeTextDuration(about.name, NAME_ANIMATION);
+  const taglineStart = Math.max(0, getStrokeTextDuration(about.name, NAME_ANIMATION) - TAGLINE_OVERLAP);
   const bioStart = taglineStart + getFoldTextDuration(about.tagline, TAGLINE_ANIMATION);
 
   return (

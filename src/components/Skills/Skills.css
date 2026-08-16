@@ -1,11 +1,11 @@
+*{
+  scrollbar-width: none;
+}
+
 .skills {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 6rem 1.5rem;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 2rem 1.5rem 4rem;
 }
 
 .skills__stats {

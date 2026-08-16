@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   SiReact,
   SiJavascript,
@@ -14,6 +15,8 @@ import { LogoLoop } from '../LogoLoop/LogoLoop';
 import { iconMap } from '../../utils/icons';
 import './Skills.css';
 
+const COUNTER_START_DELAY = 500;
+
 const languages = [
   { node: <SiReact />, title: 'React' },
   { node: <SiJavascript />, title: 'JavaScript' },
@@ -26,14 +29,21 @@ const languages = [
 ];
 
 export function Skills({ skills, about }) {
+  const [hasEntered, setHasEntered] = useState(false);
+
   return (
-    <AnimatedSection id="habilidades" className="skills">
-      <p className="section-label">Competências</p>
+    <AnimatedSection id="habilidades" className="skills" onViewportEnter={() => setHasEntered(true)}>
+      <p className="section-label">Competências &</p>
       <h2 className="section-title">Habilidades</h2>
 
       <div className="skills__stats">
         <div className="skills__stat">
-          <AnimatedCounter target={about.projectsDelivered} suffix="+" />
+          <AnimatedCounter
+            target={about.projectsDelivered}
+            suffix="+"
+            start={hasEntered}
+            delay={COUNTER_START_DELAY}
+          />
           <p>projetos entregues</p>
         </div>
       </div>
