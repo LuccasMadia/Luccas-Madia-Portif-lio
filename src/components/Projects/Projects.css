@@ -85,6 +85,12 @@
   text-transform: uppercase;
 }
 
+.project-card__status--live {
+  border-color: rgba(34, 197, 94, 0.4);
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+}
+
 .project-card__actions {
   display: flex;
   flex-wrap: wrap;

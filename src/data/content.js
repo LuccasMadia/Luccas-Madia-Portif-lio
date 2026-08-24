@@ -74,6 +74,7 @@ export const projects = [
     description:
       'Sistema desktop de gestão de estoque para uma loja de canecas personalizadas, com controle de insumos, produtos, pedidos, clientes, fornecedores e relatórios.',
     stack: ['Python', 'Tkinter/PyQt'],
+    status: 'Em funcionamento',
     images: [
       canecasInicio,
       canecasDashboard,

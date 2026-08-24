@@ -25,7 +25,15 @@ function ProjectCard({ project, index, onOpenCaseStudy, hidden, setCardRef }) {
               <p className="project-card__label">Projeto</p>
               <h3>
                 {project.title}
-                {project.status && <span className="project-card__status">{project.status}</span>}
+                {project.status && (
+                  <span
+                    className={`project-card__status${
+                      project.status === 'Em funcionamento' ? ' project-card__status--live' : ''
+                    }`}
+                  >
+                    {project.status}
+                  </span>
+                )}
               </h3>
             </div>
           </div>

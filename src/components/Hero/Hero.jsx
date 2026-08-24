@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import StrokeText, { getStrokeTextDuration } from '../StrokeText/StrokeText';
 import FoldText, { getFoldTextDuration } from '../FoldText/FoldText';
 import { scrollToSection } from '../../utils/scrollToSection';
@@ -9,15 +9,11 @@ const TAGLINE_ANIMATION = { duration: 0.4, stagger: 0.02, splitBy: 'char' };
 const TAGLINE_OVERLAP = 0.6;
 
 export function Hero({ about }) {
-  const { scrollY } = useScroll();
-  const glowY = useTransform(scrollY, [0, 400], [0, 120]);
-
   const taglineStart = Math.max(0, getStrokeTextDuration(about.name, NAME_ANIMATION) - TAGLINE_OVERLAP);
   const bioStart = taglineStart + getFoldTextDuration(about.tagline, TAGLINE_ANIMATION);
 
   return (
     <section id="sobre" className="hero">
-      <motion.div className="hero__glow" style={{ y: glowY }} aria-hidden="true" />
       <motion.div
         className="hero__content"
         initial={{ opacity: 0, y: 16 }}
