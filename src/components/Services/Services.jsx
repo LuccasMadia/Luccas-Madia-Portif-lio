@@ -39,6 +39,7 @@ export function Services({ services }) {
               className={`service-card${index === previewIndex ? ' service-card--active' : ''}`}
               key={service.id}
             >
+              <span className="service-card__index">{String(index + 1).padStart(2, '0')}</span>
               {Icon && <Icon className="service-card__icon" aria-hidden="true" />}
               <h3>{service.title}</h3>
               <p>{service.description}</p>
