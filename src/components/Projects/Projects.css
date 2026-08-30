@@ -53,12 +53,13 @@
 }
 
 .project-card__number {
-  font-family: var(--font-heading);
+  font-family: var(--font-mono);
   font-size: 1.5rem;
   color: var(--accent);
 }
 
 .project-card__label {
+  font-family: var(--font-mono);
   color: var(--text-muted);
   font-size: 0.75rem;
   letter-spacing: 0.15em;
@@ -115,15 +116,15 @@
 }
 
 .project-card__visual--0 {
-  background: linear-gradient(135deg, #0f2f2a, #2dd4bf 140%);
+  background: linear-gradient(135deg, #1a1206, #cba05a 140%);
 }
 
 .project-card__visual--1 {
-  background: linear-gradient(135deg, #0a0a0a, #14b8a6 160%);
+  background: linear-gradient(135deg, #0c0c0e, #a9813f 160%);
 }
 
 .project-card__visual--2 {
-  background: radial-gradient(circle at 30% 30%, #2dd4bf, #050505 75%);
+  background: radial-gradient(circle at 30% 30%, #cba05a, #050506 75%);
 }
 
 .project-card__description {
