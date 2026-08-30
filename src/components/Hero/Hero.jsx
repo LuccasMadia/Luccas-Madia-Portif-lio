@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import StrokeText, { getStrokeTextDuration } from '../StrokeText/StrokeText';
 import FoldText, { getFoldTextDuration } from '../FoldText/FoldText';
 import { scrollToSection } from '../../utils/scrollToSection';
+import heroPortrait from '../../assets/hero/lucca-portrait.webp';
 import './Hero.css';
 
 const NAME_ANIMATION = { drawDuration: 1.6, fillDelay: 0.2, stagger: 0.05 };
@@ -14,6 +15,14 @@ export function Hero({ about }) {
 
   return (
     <section id="sobre" className="hero">
+      <div
+        className="hero__portrait"
+        style={{ backgroundImage: `url(${heroPortrait})` }}
+        aria-hidden="true"
+      />
+      <div className="hero__tint" aria-hidden="true" />
+      <div className="hero__scrim" aria-hidden="true" />
+      <span className="hero__index" aria-hidden="true">01</span>
       <motion.div
         className="hero__content"
         initial={{ opacity: 0, y: 16 }}

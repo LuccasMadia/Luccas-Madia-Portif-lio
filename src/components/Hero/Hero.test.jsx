@@ -19,4 +19,12 @@ describe('Hero', () => {
     expect(screen.getByRole('link', { name: 'Ver projetos' })).toHaveAttribute('href', '#projetos');
     expect(screen.getByRole('link', { name: 'Fale comigo' })).toHaveAttribute('href', '#contato');
   });
+
+  it('renders a decorative portrait background and an index label', () => {
+    const { container } = render(<Hero about={about} />);
+
+    const portrait = container.querySelector('.hero__portrait');
+    expect(portrait).toHaveAttribute('aria-hidden', 'true');
+    expect(screen.getByText('01')).toBeInTheDocument();
+  });
 });

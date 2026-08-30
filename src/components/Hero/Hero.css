@@ -2,20 +2,56 @@
   position: relative;
   min-height: clamp(560px, 100vh, 820px);
   display: flex;
-  align-items: center;
-  padding: 8rem 1.5rem 2rem;
+  align-items: flex-end;
+  padding: 3rem 1.5rem 4rem;
   overflow: hidden;
 }
 
-.hero__content {
-  max-width: 640px;
-  margin: 0 auto;
-  position: relative;
+.hero__portrait {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 15%;
+  filter: grayscale(1) contrast(1.1);
+  z-index: 0;
+}
+
+.hero__tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(203, 160, 90, 0.9), rgba(12, 12, 14, 0.95));
+  mix-blend-mode: color;
   z-index: 1;
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(12, 12, 14, 0.15) 0%, rgba(12, 12, 14, 0.55) 55%, rgba(12, 12, 14, 0.95) 100%);
+  z-index: 2;
+}
+
+.hero__index {
+  position: absolute;
+  top: 6.5rem;
+  right: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  z-index: 3;
+}
+
+.hero__content {
+  max-width: 720px;
+  margin: 0;
+  position: relative;
+  z-index: 3;
 }
 
 .hero__eyebrow {
   color: var(--accent);
+  font-family: var(--font-mono);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-size: 0.75rem;
@@ -23,13 +59,15 @@
 }
 
 .hero__name {
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(3rem, 9vw, 6rem);
+  line-height: 0.98;
   margin-bottom: 0.75rem;
 }
 
 .hero__tagline {
   color: var(--accent);
-  font-size: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 1rem;
   min-height: 1.6em;
   margin-bottom: 1.5rem;
 }
@@ -38,6 +76,7 @@
   color: var(--text-muted);
   margin-bottom: 2rem;
   line-height: 1.6;
+  max-width: 46ch;
 }
 
 .hero__actions {
