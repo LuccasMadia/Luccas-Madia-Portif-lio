@@ -90,8 +90,7 @@
   background: #0a0a0a;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-top: none;
-  border-radius: 0 0 10px 10px;
-  clip-path: polygon(4% 0, 96% 0, 100% 100%, 0 100%);
+  border-radius: 8px 8px 10px 10px;
 }
 
 .notebook-frame__hinge {
