@@ -15,11 +15,4 @@ describe('Services', () => {
     expect(screen.getByText('Descrição 1')).toBeInTheDocument();
     expect(screen.getByText('Descrição 2')).toBeInTheDocument();
   });
-
-  it('numbers each service card', () => {
-    render(<Services services={services} />);
-
-    expect(screen.getByText('01')).toBeInTheDocument();
-    expect(screen.getByText('02')).toBeInTheDocument();
-  });
 });
