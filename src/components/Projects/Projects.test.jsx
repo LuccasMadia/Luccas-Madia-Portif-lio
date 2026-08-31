@@ -63,9 +63,10 @@ describe('Projects', () => {
     expect(placeholder.tagName).not.toBe('IMG');
   });
 
-  it('includes the active project title, description and stack for the hover overlay', () => {
+  it('shows the active project title, description and stack beside the notebook', () => {
     render(<Projects projects={[projects[0]]} />);
 
+    expect(screen.getByRole('heading', { name: 'Projeto A' })).toBeInTheDocument();
     expect(screen.getByText('Descrição A')).toBeInTheDocument();
     expect(screen.getByText('React')).toBeInTheDocument();
     expect(screen.getByText('Vite')).toBeInTheDocument();
@@ -103,12 +104,12 @@ describe('Projects', () => {
     expect(screen.getAllByRole('img').some((img) => img.getAttribute('src') === 'a.png')).toBe(true);
   });
 
-  it('is not clickable when the project has neither a liveUrl nor a case study', () => {
+  it('is not wrapped in a link or button when the project has neither a liveUrl nor a case study', () => {
     const project = { ...projects[0], liveUrl: undefined };
     render(<Projects projects={[project]} />);
 
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
-    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+    expect(document.querySelector('.project-notebook-trigger')).not.toBeInTheDocument();
   });
 
   describe('notebook image navigation', () => {

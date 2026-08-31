@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './NotebookFrame.css';
 
-export function NotebookFrame({ images = [], alt, gradientIndex = 0, title, description, stack }) {
+export function NotebookFrame({ images = [], alt, gradientIndex = 0 }) {
   const [imageIndex, setImageIndex] = useState(0);
   const hasImages = images.length > 0;
   const hasMultipleImages = images.length > 1;
@@ -30,19 +30,6 @@ export function NotebookFrame({ images = [], alt, gradientIndex = 0, title, desc
               aria-label={alt}
               className={`notebook-frame__screen notebook-frame__screen--gradient-${gradientIndex % 3}`}
             />
-          )}
-          {title && imageIndex === 0 && (
-            <div className="notebook-frame__overlay" aria-hidden="true">
-              <h3 className="notebook-frame__overlay-title">{title}</h3>
-              {description && <p className="notebook-frame__overlay-description">{description}</p>}
-              {stack?.length > 0 && (
-                <ul className="notebook-frame__overlay-stack">
-                  {stack.map((tech) => (
-                    <li key={tech}>{tech}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
           )}
           {hasMultipleImages && (
             <>

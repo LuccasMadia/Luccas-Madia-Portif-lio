@@ -37,56 +37,6 @@
   background: var(--bg);
 }
 
-.notebook-frame__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 0.5rem;
-  padding: 1.25rem;
-  background: rgba(5, 5, 5, 0.55);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-
-.notebook-frame:hover .notebook-frame__overlay,
-.notebook-frame:focus-within .notebook-frame__overlay {
-  opacity: 1;
-}
-
-.notebook-frame__overlay-title {
-  color: var(--text);
-  font-size: 1.25rem;
-}
-
-.notebook-frame__overlay-description {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.notebook-frame__overlay-stack {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 0;
-  margin: 0;
-}
-
-.notebook-frame__overlay-stack li {
-  font-size: 0.75rem;
-  color: var(--accent);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 0.2rem 0.6rem;
-}
-
 .notebook-frame__image-nav {
   position: absolute;
   top: 50%;

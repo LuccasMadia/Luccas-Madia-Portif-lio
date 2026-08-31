@@ -6,19 +6,11 @@ import './Projects.css';
 function ProjectCard({ project, index, onOpenCaseStudy }) {
   const hasGallery = Boolean(project.images?.length || project.caseStudy?.length);
   const gallery = project.images?.length ? project.images : project.caseStudy?.map((area) => area.imagem) ?? [];
-  const frame = (
-    <NotebookFrame
-      images={gallery}
-      alt={project.title}
-      gradientIndex={index}
-      title={project.title}
-      description={project.description}
-      stack={project.stack}
-    />
-  );
+  const frame = <NotebookFrame images={gallery} alt={project.title} gradientIndex={index} />;
 
+  let interactiveFrame = frame;
   if (hasGallery) {
-    return (
+    interactiveFrame = (
       <button
         type="button"
         className="project-notebook-trigger"
@@ -28,10 +20,8 @@ function ProjectCard({ project, index, onOpenCaseStudy }) {
         {frame}
       </button>
     );
-  }
-
-  if (project.liveUrl) {
-    return (
+  } else if (project.liveUrl) {
+    interactiveFrame = (
       <a
         href={project.liveUrl}
         target="_blank"
@@ -44,7 +34,20 @@ function ProjectCard({ project, index, onOpenCaseStudy }) {
     );
   }
 
-  return frame;
+  return (
+    <div className="project-showcase">
+      <div className="project-showcase__notebook">{interactiveFrame}</div>
+      <div className="project-showcase__info">
+        <h3>{project.title}</h3>
+        <p>{project.description}</p>
+        <ul className="project-showcase__stack">
+          {project.stack.map((tech) => (
+            <li key={tech}>{tech}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
 }
 
 export function Projects({ projects }) {
