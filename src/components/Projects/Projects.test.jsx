@@ -21,72 +21,66 @@ const projects = [
 ];
 
 describe('Projects', () => {
-  it('renders a numbered card for each project with its title', () => {
+  it('renders a notebook screen for each project with an accessible name', () => {
     render(<Projects projects={projects} />);
 
-    expect(screen.getByText('01')).toBeInTheDocument();
-    expect(screen.getByText('02')).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Projeto A' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Projeto B' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Projeto A' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Projeto B' })).toBeInTheDocument();
   });
 
-  it('renders project details and a "Visitar site" link that opens in a new tab', () => {
-    render(<Projects projects={[projects[0]]} />);
-
-    expect(screen.getByText('React')).toBeInTheDocument();
-    expect(screen.getByText('Vite')).toBeInTheDocument();
-    expect(screen.getByText('Descrição A')).toBeInTheDocument();
-
-    const liveLink = screen.getByRole('link', { name: 'Visitar site' });
-    expect(liveLink).toHaveAttribute('href', 'https://example.com/a');
-    expect(liveLink).toHaveAttribute('target', '_blank');
-    expect(liveLink).toHaveAttribute('rel', 'noopener noreferrer');
-
-    const codeLink = screen.getByRole('link', { name: 'Ver código no GitHub' });
-    expect(codeLink).toHaveAttribute('href', 'https://github.com/user/a');
-  });
-
-  it('renders a pending GitHub icon when the project has no codeUrl yet', () => {
-    const project = { ...projects[0], codeUrl: undefined };
-    render(<Projects projects={[project]} />);
-
-    expect(screen.queryByRole('link', { name: 'Ver código no GitHub' })).not.toBeInTheDocument();
-    expect(screen.getByLabelText('Código em breve')).toBeInTheDocument();
-  });
-
-  it('does not render "Visitar site" when the project has no liveUrl', () => {
-    const project = { ...projects[0], liveUrl: undefined };
-    render(<Projects projects={[project]} />);
-
-    expect(screen.queryByRole('link', { name: 'Visitar site' })).not.toBeInTheDocument();
-  });
-
-  it('renders only the first screenshot as a static thumbnail when the project has images', () => {
-    const project = { ...projects[0], images: ['a.png', 'b.png'] };
+  it('renders only the first screenshot as the notebook screen when the project has images', () => {
+    const project = { ...projects[0], liveUrl: undefined, images: ['a.png', 'b.png'] };
     render(<Projects projects={[project]} />);
 
     expect(screen.getAllByRole('img')).toHaveLength(1);
     expect(screen.getByRole('img')).toHaveAttribute('src', 'a.png');
   });
 
-  it('opens the case study modal from "Ver projeto" when the project has caseStudy entries', () => {
+  it('shows a gradient placeholder screen when the project has no images or case study', () => {
+    const project = { ...projects[0], liveUrl: undefined };
+    render(<Projects projects={[project]} />);
+
+    const placeholder = screen.getByRole('img', { name: 'Projeto A' });
+    expect(placeholder.tagName).not.toBe('IMG');
+  });
+
+  it('opens the site in a new tab when clicking a project that only has a liveUrl', () => {
+    render(<Projects projects={[projects[0]]} />);
+
+    const link = screen.getByRole('link', { name: /projeto a/i });
+    expect(link).toHaveAttribute('href', 'https://example.com/a');
+    expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  });
+
+  it('opens the case study modal when clicking a project with case study entries, even if it also has a liveUrl', () => {
     const project = {
       ...projects[0],
       caseStudy: [{ titulo: 'Tela inicial', imagem: 'inicio.png', descricao: 'Descrição da tela inicial.' }],
     };
     render(<Projects projects={[project]} />);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Ver projeto' }));
+    expect(screen.queryByRole('link', { name: /projeto a/i })).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: /projeto a/i }));
 
     expect(screen.getByText('Descrição da tela inicial.')).toBeInTheDocument();
   });
 
-  it('opens the case study modal with a carousel when the project only has plain images', () => {
+  it('opens the case study modal with a carousel when clicking a project that only has plain images', () => {
     const project = { ...projects[0], liveUrl: undefined, images: ['a.png', 'b.png'] };
     render(<Projects projects={[project]} />);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Ver projeto' }));
+    fireEvent.click(screen.getByRole('button', { name: /projeto a/i }));
 
     expect(screen.getAllByRole('img').some((img) => img.getAttribute('src') === 'a.png')).toBe(true);
+  });
+
+  it('is not clickable when the project has neither a liveUrl nor a case study', () => {
+    const project = { ...projects[0], liveUrl: undefined };
+    render(<Projects projects={[project]} />);
+
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 });

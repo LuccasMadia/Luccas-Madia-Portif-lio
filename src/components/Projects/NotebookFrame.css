@@ -1,0 +1,67 @@
+.notebook-frame {
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+
+.notebook-frame__bezel {
+  position: relative;
+  box-sizing: border-box;
+  padding: 14px 14px 8px;
+  background: #050505;
+  border: 1px solid var(--border);
+  border-radius: 14px 14px 4px 4px;
+}
+
+.notebook-frame__camera {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.notebook-frame__screen {
+  display: block;
+  width: 100%;
+  height: clamp(220px, 32vw, 380px);
+  object-fit: cover;
+  border-radius: 4px;
+  background: var(--bg);
+}
+
+.notebook-frame__screen--gradient-0 {
+  background: linear-gradient(135deg, #0f2f2a, #2dd4bf 140%);
+}
+
+.notebook-frame__screen--gradient-1 {
+  background: linear-gradient(135deg, #0a0a0a, #14b8a6 160%);
+}
+
+.notebook-frame__screen--gradient-2 {
+  background: radial-gradient(circle at 30% 30%, #2dd4bf, #050505 75%);
+}
+
+.notebook-frame__base {
+  position: relative;
+  height: 14px;
+  margin: 0 -4px;
+  background: var(--bg-alt-2);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  clip-path: polygon(4% 0, 96% 0, 100% 100%, 0 100%);
+}
+
+.notebook-frame__hinge {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 15%;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--border);
+}
