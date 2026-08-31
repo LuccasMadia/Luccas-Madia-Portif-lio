@@ -2,6 +2,11 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Header } from './Header';
 
 describe('Header', () => {
+  beforeEach(() => {
+    localStorage.clear();
+    document.documentElement.removeAttribute('data-theme');
+  });
+
   it('renders a link for every nav section', () => {
     render(<Header name="Luccas Madia" />);
 
@@ -28,5 +33,21 @@ describe('Header', () => {
 
     fireEvent.click(screen.getByRole('link', { name: 'Projetos' }));
     expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('defaults to a dark theme and offers to switch to light', () => {
+    render(<Header name="Luccas Madia" />);
+
+    expect(document.documentElement.dataset.theme).toBe('dark');
+    expect(screen.getByRole('button', { name: 'Ativar tema claro' })).toBeInTheDocument();
+  });
+
+  it('switches the document theme when the theme toggle is clicked', () => {
+    render(<Header name="Luccas Madia" />);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Ativar tema claro' }));
+
+    expect(document.documentElement.dataset.theme).toBe('light');
+    expect(screen.getByRole('button', { name: 'Ativar tema escuro' })).toBeInTheDocument();
   });
 });

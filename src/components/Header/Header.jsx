@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { FaMoon, FaSun } from 'react-icons/fa';
 import logoMark from '../../assets/brand/logo-mark.png';
 import { useActiveSection } from '../../hooks/useActiveSection';
+import { useTheme } from '../../hooks/useTheme';
 import { scrollToSection } from '../../utils/scrollToSection';
 import './Header.css';
 
@@ -15,6 +17,7 @@ const NAV_ITEMS = [
 export function Header({ name }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const activeId = useActiveSection(NAV_ITEMS.map((item) => item.id));
+  const { theme, toggleTheme } = useTheme();
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -30,29 +33,39 @@ export function Header({ name }) {
         <a href="#sobre" className="header__logo" onClick={(event) => handleNavClick(event, 'sobre')}>
           <img src={logoMark} alt={name} className="header__logo-image" />
         </a>
-        <button
-          type="button"
-          className="header__toggle"
-          aria-label="Abrir menu"
-          aria-expanded={isMenuOpen}
-          onClick={() => setIsMenuOpen((open) => !open)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-        <nav className={`header__nav ${isMenuOpen ? 'header__nav--open' : ''}`}>
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className={`header__link ${activeId === item.id ? 'header__link--active' : ''}`}
-              onClick={(event) => handleNavClick(event, item.id)}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        <div className="header__actions">
+          <nav className={`header__nav ${isMenuOpen ? 'header__nav--open' : ''}`}>
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`header__link ${activeId === item.id ? 'header__link--active' : ''}`}
+                onClick={(event) => handleNavClick(event, item.id)}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <button
+            type="button"
+            className="header__theme-toggle"
+            aria-label={theme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro'}
+            onClick={toggleTheme}
+          >
+            {theme === 'dark' ? <FaSun aria-hidden="true" /> : <FaMoon aria-hidden="true" />}
+          </button>
+          <button
+            type="button"
+            className="header__toggle"
+            aria-label="Abrir menu"
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </div>
     </header>
   );

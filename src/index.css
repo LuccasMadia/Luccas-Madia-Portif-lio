@@ -1,18 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=IBM+Plex+Mono:wght@500&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  --bg: #0c0c0e;
-  --bg-alt: #050506;
-  --bg-alt-2: #141210;
-  --accent: #cba05a;
-  --accent-dark: #a9813f;
-  --text: #f2efe9;
-  --text-muted: #9b968c;
-  --border: rgba(203, 160, 90, 0.2);
-  --font-heading: 'Fraunces', serif;
+  --bg: #0a0a0a;
+  --bg-alt: #050505;
+  --bg-alt-2: #111111;
+  --accent: #2dd4bf;
+  --accent-dark: #14b8a6;
+  --text: #eafffb;
+  --text-muted: #8a9a97;
+  --border: rgba(45, 212, 191, 0.2);
+  --header-bg: rgba(10, 10, 10, 0.75);
+  --font-heading: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --font-mono: 'IBM Plex Mono', monospace;
   --max-width: 1120px;
+}
+
+:root[data-theme='light'] {
+  --bg: #ffffff;
+  --bg-alt: #f7f9f8;
+  --bg-alt-2: #eef2f1;
+  --accent: #0d9488;
+  --accent-dark: #0f766e;
+  --text: #0a0a0a;
+  --text-muted: #5b6b68;
+  --border: rgba(13, 148, 136, 0.25);
+  --header-bg: rgba(255, 255, 255, 0.75);
 }
 
 * {
@@ -51,7 +63,6 @@ a {
 
 .section-label {
   color: var(--accent);
-  font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -81,7 +92,7 @@ button.btn {
 
 .btn--primary {
   background: var(--accent);
-  color: #1a1206;
+  color: #04211c;
 }
 .btn--primary:hover {
   background: var(--accent-dark);
@@ -92,7 +103,7 @@ button.btn {
   color: var(--accent);
 }
 .btn--outline:hover {
-  background: rgba(203, 160, 90, 0.1);
+  background: rgba(45, 212, 191, 0.1);
 }
 
 .btn--ghost {
@@ -100,19 +111,4 @@ button.btn {
 }
 .btn--ghost:hover {
   color: var(--text);
-}
-
-body {
-  position: relative;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0.045;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
