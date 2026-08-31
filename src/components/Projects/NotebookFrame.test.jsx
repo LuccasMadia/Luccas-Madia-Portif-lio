@@ -30,4 +30,35 @@ describe('NotebookFrame', () => {
     expect(placeholder.tagName).not.toBe('IMG');
     expect(placeholder).toHaveClass('notebook-frame__screen--gradient-1');
   });
+
+  it('does not render a hover overlay when no title is given', () => {
+    const { container } = render(<NotebookFrame src="screenshot.png" alt="Projeto X" />);
+
+    expect(container.querySelector('.notebook-frame__overlay')).not.toBeInTheDocument();
+  });
+
+  it('renders the title, description and stack in the hover overlay', () => {
+    render(
+      <NotebookFrame
+        src="screenshot.png"
+        alt="Projeto X"
+        title="Projeto X"
+        description="Uma breve descrição do projeto."
+        stack={['React', 'Vite']}
+      />
+    );
+
+    expect(screen.getByText('Projeto X', { selector: '.notebook-frame__overlay-title' })).toBeInTheDocument();
+    expect(screen.getByText('Uma breve descrição do projeto.')).toBeInTheDocument();
+    expect(screen.getByText('React')).toBeInTheDocument();
+    expect(screen.getByText('Vite')).toBeInTheDocument();
+  });
+
+  it('omits the stack list when no stack is given', () => {
+    const { container } = render(
+      <NotebookFrame src="screenshot.png" alt="Projeto X" title="Projeto X" description="Descrição." />
+    );
+
+    expect(container.querySelector('.notebook-frame__overlay-stack')).not.toBeInTheDocument();
+  });
 });

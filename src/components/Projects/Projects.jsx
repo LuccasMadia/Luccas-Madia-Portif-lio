@@ -6,7 +6,16 @@ import './Projects.css';
 function ProjectCard({ project, index, onOpenCaseStudy }) {
   const hasGallery = Boolean(project.images?.length || project.caseStudy?.length);
   const cover = project.images?.[0] ?? project.caseStudy?.[0]?.imagem;
-  const frame = <NotebookFrame src={cover} alt={project.title} gradientIndex={index} />;
+  const frame = (
+    <NotebookFrame
+      src={cover}
+      alt={project.title}
+      gradientIndex={index}
+      title={project.title}
+      description={project.description}
+      stack={project.stack}
+    />
+  );
 
   if (hasGallery) {
     return (

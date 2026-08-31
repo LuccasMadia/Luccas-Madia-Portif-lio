@@ -63,6 +63,14 @@ describe('Projects', () => {
     expect(placeholder.tagName).not.toBe('IMG');
   });
 
+  it('includes the active project title, description and stack for the hover overlay', () => {
+    render(<Projects projects={[projects[0]]} />);
+
+    expect(screen.getByText('Descrição A')).toBeInTheDocument();
+    expect(screen.getByText('React')).toBeInTheDocument();
+    expect(screen.getByText('Vite')).toBeInTheDocument();
+  });
+
   it('opens the site in a new tab when clicking a project that only has a liveUrl', () => {
     render(<Projects projects={[projects[0]]} />);
 
