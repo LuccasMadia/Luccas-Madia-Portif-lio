@@ -6,14 +6,10 @@
   --bg-alt-2: #232323;
   --accent: #2dd4bf;
   --accent-dark: #14b8a6;
-  --text: #ffffff;
+  --text: #eafffb;
   --text-muted: #8a9a97;
   --border: rgba(45, 212, 191, 0.2);
   --header-bg: rgba(26, 26, 26, 0.75);
-  --notebook-bezel: #f2f2f2;
-  --notebook-base: #e2e2e2;
-  --notebook-chrome-border: rgba(0, 0, 0, 0.15);
-  --notebook-dot: rgba(0, 0, 0, 0.35);
   --font-heading: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
   --max-width: 1120px;
@@ -29,10 +25,6 @@
   --text-muted: #5b6b68;
   --border: rgba(13, 148, 136, 0.25);
   --header-bg: rgba(255, 255, 255, 0.75);
-  --notebook-bezel: #050505;
-  --notebook-base: #141414;
-  --notebook-chrome-border: rgba(255, 255, 255, 0.15);
-  --notebook-dot: rgba(255, 255, 255, 0.35);
 }
 
 * {
