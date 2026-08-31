@@ -7,8 +7,8 @@
   position: relative;
   box-sizing: border-box;
   padding: 14px 14px 8px;
-  background: var(--notebook-bezel);
-  border: 1px solid var(--notebook-chrome-border);
+  background: #050505;
+  border: 1px solid var(--border);
   border-radius: 14px 14px 4px 4px;
 }
 
@@ -20,7 +20,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--notebook-dot);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .notebook-frame__screen-wrap {
@@ -87,8 +87,8 @@
   position: relative;
   height: 14px;
   margin: 0 -4px;
-  background: var(--notebook-base);
-  border: 1px solid var(--notebook-chrome-border);
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-top: none;
   border-radius: 0 0 10px 10px;
   clip-path: polygon(4% 0, 96% 0, 100% 100%, 0 100%);
@@ -102,5 +102,5 @@
   width: 15%;
   height: 3px;
   border-radius: 999px;
-  background: var(--notebook-dot);
+  background: rgba(255, 255, 255, 0.15);
 }
