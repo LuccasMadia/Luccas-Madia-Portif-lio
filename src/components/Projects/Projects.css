@@ -13,20 +13,9 @@
 }
 
 .projects__stack {
-  position: relative;
-}
-
-.projects__end-spacer {
-  height: clamp(180px, 35vh, 320px);
-}
-
-.project-sticky {
-  position: sticky;
-  top: 90px;
-}
-
-.project-sticky--hidden {
-  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .project-notebook-trigger {

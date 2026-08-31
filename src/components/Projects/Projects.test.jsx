@@ -28,12 +28,12 @@ describe('Projects', () => {
     expect(screen.getByRole('img', { name: 'Projeto B' })).toBeInTheDocument();
   });
 
-  it('renders only the first screenshot as the notebook screen when the project has images', () => {
+  it('shows a gradient placeholder screen even when the project has images (images disabled for now)', () => {
     const project = { ...projects[0], liveUrl: undefined, images: ['a.png', 'b.png'] };
     render(<Projects projects={[project]} />);
 
-    expect(screen.getAllByRole('img')).toHaveLength(1);
-    expect(screen.getByRole('img')).toHaveAttribute('src', 'a.png');
+    const placeholder = screen.getByRole('img', { name: 'Projeto A' });
+    expect(placeholder.tagName).not.toBe('IMG');
   });
 
   it('shows a gradient placeholder screen when the project has no images or case study', () => {
