@@ -207,7 +207,7 @@ export const skills = [
 
 export const socials = {
   whatsapp: 'https://wa.me/5567998746300',
-  linkedin: 'https://linkedin.com/in/LuccasMadia',
+  linkedin: 'https://www.linkedin.com/in/luccas-madia-b0229739b',
   github: 'https://github.com/LuccasMadia',
   instagram: 'https://www.instagram.com/madia.consultoria/',
 };
