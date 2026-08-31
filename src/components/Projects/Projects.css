@@ -12,10 +12,61 @@
   line-height: 1.5;
 }
 
-.projects__stack {
+.projects__carousel {
   display: flex;
-  flex-direction: column;
-  gap: 3rem;
+  align-items: center;
+  gap: 1rem;
+}
+
+.projects__stack {
+  flex: 1;
+  min-width: 0;
+}
+
+.projects__nav {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-alt-2);
+  color: var(--text);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.projects__nav:hover,
+.projects__nav:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.projects__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.projects__dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.projects__dot--active {
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 .project-notebook-trigger {
