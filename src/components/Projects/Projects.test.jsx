@@ -37,12 +37,22 @@ describe('Projects', () => {
     expect(screen.queryByRole('img', { name: 'Projeto C' })).not.toBeInTheDocument();
   });
 
-  it('shows a gradient placeholder screen even when the project has images (images disabled for now)', () => {
+  it('shows the first image as the notebook cover when the project has images', () => {
     const project = { ...projects[0], liveUrl: undefined, images: ['a.png', 'b.png'] };
     render(<Projects projects={[project]} />);
 
-    const placeholder = screen.getByRole('img', { name: 'Projeto A' });
-    expect(placeholder.tagName).not.toBe('IMG');
+    expect(screen.getByRole('img', { name: 'Projeto A' })).toHaveAttribute('src', 'a.png');
+  });
+
+  it('shows the first case study image as the notebook cover when the project has no plain images', () => {
+    const project = {
+      ...projects[0],
+      liveUrl: undefined,
+      caseStudy: [{ titulo: 'Tela inicial', imagem: 'inicio.png', descricao: 'Descrição da tela inicial.' }],
+    };
+    render(<Projects projects={[project]} />);
+
+    expect(screen.getByRole('img', { name: 'Projeto A' })).toHaveAttribute('src', 'inicio.png');
   });
 
   it('shows a gradient placeholder screen when the project has no images or case study', () => {
