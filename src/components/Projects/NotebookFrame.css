@@ -40,6 +40,7 @@
 .notebook-frame__overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -49,6 +50,7 @@
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.25s ease;
 }
 
@@ -83,6 +85,40 @@
   border: 1px solid var(--border);
   border-radius: 999px;
   padding: 0.2rem 0.6rem;
+}
+
+.notebook-frame__image-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(10, 10, 10, 0.6);
+  color: var(--text);
+  font-size: 1.25rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.notebook-frame__image-nav:hover,
+.notebook-frame__image-nav:focus-visible {
+  background: var(--accent);
+  color: #04211c;
+}
+
+.notebook-frame__image-nav--prev {
+  left: 10px;
+}
+
+.notebook-frame__image-nav--next {
+  right: 10px;
 }
 
 .notebook-frame__screen--gradient-0 {

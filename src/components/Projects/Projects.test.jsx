@@ -111,6 +111,40 @@ describe('Projects', () => {
     expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 
+  describe('notebook image navigation', () => {
+    it('cycles through the active project own images using the internal arrows', () => {
+      const project = { ...projects[0], liveUrl: undefined, images: ['a.png', 'b.png'] };
+      render(<Projects projects={[project]} />);
+
+      fireEvent.click(screen.getByRole('button', { name: 'Próxima imagem' }));
+
+      expect(screen.getByRole('img', { name: 'Projeto A' })).toHaveAttribute('src', 'b.png');
+    });
+
+    it('does not open the case study modal when clicking an image navigation arrow', () => {
+      const project = { ...projects[0], liveUrl: undefined, images: ['a.png', 'b.png'] };
+      render(<Projects projects={[project]} />);
+
+      fireEvent.click(screen.getByRole('button', { name: 'Próxima imagem' }));
+
+      expect(document.querySelector('.case-study-modal')).not.toBeInTheDocument();
+    });
+
+    it('resets to the first image when switching to another project and back', () => {
+      const projectA = { ...projects[0], liveUrl: undefined, images: ['a1.png', 'a2.png'] };
+      const projectB = { ...projects[1], liveUrl: undefined, images: ['b1.png', 'b2.png'] };
+      render(<Projects projects={[projectA, projectB]} />);
+
+      fireEvent.click(screen.getByRole('button', { name: 'Próxima imagem' }));
+      expect(screen.getByRole('img', { name: 'Projeto A' })).toHaveAttribute('src', 'a2.png');
+
+      fireEvent.click(screen.getByRole('button', { name: 'Próximo projeto' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Projeto anterior' }));
+
+      expect(screen.getByRole('img', { name: 'Projeto A' })).toHaveAttribute('src', 'a1.png');
+    });
+  });
+
   describe('carousel navigation', () => {
     it('shows the next project when clicking the next arrow, looping from the last back to the first', () => {
       render(<Projects projects={projects} />);

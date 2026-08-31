@@ -5,10 +5,10 @@ import './Projects.css';
 
 function ProjectCard({ project, index, onOpenCaseStudy }) {
   const hasGallery = Boolean(project.images?.length || project.caseStudy?.length);
-  const cover = project.images?.[0] ?? project.caseStudy?.[0]?.imagem;
+  const gallery = project.images?.length ? project.images : project.caseStudy?.map((area) => area.imagem) ?? [];
   const frame = (
     <NotebookFrame
-      src={cover}
+      images={gallery}
       alt={project.title}
       gradientIndex={index}
       title={project.title}
@@ -77,7 +77,12 @@ export function Projects({ projects }) {
           </button>
         )}
         <div className="projects__stack">
-          <ProjectCard project={projects[activeIndex]} index={activeIndex} onOpenCaseStudy={setCaseStudyProject} />
+          <ProjectCard
+            project={projects[activeIndex]}
+            index={activeIndex}
+            onOpenCaseStudy={setCaseStudyProject}
+            key={projects[activeIndex].id}
+          />
         </div>
         {hasMultiple && (
           <button
