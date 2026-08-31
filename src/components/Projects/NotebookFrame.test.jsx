@@ -113,5 +113,23 @@ describe('NotebookFrame', () => {
 
       expect(handleClick).not.toHaveBeenCalled();
     });
+
+    it('hides the hover overlay after navigating away from the first image', () => {
+      const { container } = render(<NotebookFrame images={images} alt="Projeto X" title="Projeto X" />);
+
+      fireEvent.click(screen.getByRole('button', { name: 'Próxima imagem' }));
+
+      expect(container.querySelector('.notebook-frame__overlay')).not.toBeInTheDocument();
+    });
+
+    it('shows the hover overlay again after navigating back to the first image', () => {
+      const { container } = render(<NotebookFrame images={images} alt="Projeto X" title="Projeto X" />);
+      const next = screen.getByRole('button', { name: 'Próxima imagem' });
+
+      fireEvent.click(next);
+      fireEvent.click(screen.getByRole('button', { name: 'Imagem anterior' }));
+
+      expect(container.querySelector('.notebook-frame__overlay')).toBeInTheDocument();
+    });
   });
 });

@@ -31,7 +31,7 @@ export function NotebookFrame({ images = [], alt, gradientIndex = 0, title, desc
               className={`notebook-frame__screen notebook-frame__screen--gradient-${gradientIndex % 3}`}
             />
           )}
-          {title && (
+          {title && imageIndex === 0 && (
             <div className="notebook-frame__overlay" aria-hidden="true">
               <h3 className="notebook-frame__overlay-title">{title}</h3>
               {description && <p className="notebook-frame__overlay-description">{description}</p>}
