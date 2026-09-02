@@ -17,9 +17,9 @@
   text-align: center;
   padding: 1.5rem 0.5rem;
   transition: transform 0.2s ease;
+  cursor: pointer;
 }
 
-.service-card:hover,
 .service-card--active {
   transform: translateY(-4px);
 }
@@ -49,18 +49,34 @@
   transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
 }
 
-.service-card:hover h3,
 .service-card--active h3,
-.service-card:focus-within h3 {
+.service-card:focus-visible h3 {
   max-height: 60px;
   margin-bottom: 0.5rem;
   opacity: 1;
 }
 
-.service-card:hover p,
 .service-card--active p,
-.service-card:focus-within p {
+.service-card:focus-visible p {
   max-height: 200px;
   margin-top: 0.5rem;
   opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .service-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .service-card:hover h3 {
+    max-height: 60px;
+    margin-bottom: 0.5rem;
+    opacity: 1;
+  }
+
+  .service-card:hover p {
+    max-height: 200px;
+    margin-top: 0.5rem;
+    opacity: 1;
+  }
 }
