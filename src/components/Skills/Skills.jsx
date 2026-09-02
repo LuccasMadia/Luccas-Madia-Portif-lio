@@ -1,12 +1,32 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import {
+  SiReact,
+  SiJavascript,
+  SiNodedotjs,
+  SiNextdotjs,
+  SiPython,
+  SiMysql,
+  SiHtml5,
+  SiCss,
+} from 'react-icons/si';
 import { AnimatedSection } from '../AnimatedSection/AnimatedSection';
 import { AnimatedCounter } from '../AnimatedCounter/AnimatedCounter';
+import { LogoLoop } from '../LogoLoop/LogoLoop';
 import { iconMap } from '../../utils/icons';
 import './Skills.css';
 
 const COUNTER_START_DELAY = 500;
-const KEY_TRANSITION = { type: 'spring', stiffness: 500, damping: 25 };
+
+const languages = [
+  { node: <SiReact />, title: 'React' },
+  { node: <SiJavascript />, title: 'JavaScript' },
+  { node: <SiNodedotjs />, title: 'Node.js' },
+  { node: <SiNextdotjs />, title: 'Next.js' },
+  { node: <SiPython />, title: 'Python' },
+  { node: <SiMysql />, title: 'MySQL' },
+  { node: <SiHtml5 />, title: 'HTML5' },
+  { node: <SiCss />, title: 'CSS3' },
+];
 
 export function Skills({ skills, about }) {
   const [hasEntered, setHasEntered] = useState(false);
@@ -28,28 +48,38 @@ export function Skills({ skills, about }) {
         </div>
       </div>
 
-      <div className="keyboard">
-        <p className="keyboard__hint">(dica: clique numa tecla)</p>
-        <div className="keyboard__grid">
-          {skills.map((item) => {
-            const Icon = iconMap[item.icon];
-            return (
-              <motion.button
-                type="button"
-                className="keyboard__key"
-                key={item.name}
-                whileHover={{ y: -4 }}
-                whileTap={{ y: 3 }}
-                whileFocus={{ y: -4 }}
-                transition={KEY_TRANSITION}
-              >
-                {Icon && <Icon aria-hidden="true" />}
-                <span>{item.name}</span>
-              </motion.button>
-            );
-          })}
-        </div>
+      <div className="skills__group">
+        <h3>Tecnologias</h3>
+        <LogoLoop
+          logos={languages}
+          speed={60}
+          direction="left"
+          logoHeight={32}
+          gap={56}
+          pauseOnHover
+          fadeOut
+          fadeOutColor="var(--bg)"
+          scaleOnHover
+          ariaLabel="Linguagens e tecnologias utilizadas"
+        />
       </div>
+
+      {skills.map((group) => (
+        <div className="skills__group" key={group.category}>
+          <h3>{group.category}</h3>
+          <ul className="skills__badges">
+            {group.items.map((item) => {
+              const Icon = iconMap[item.icon];
+              return (
+                <li className="skills__badge" key={item.name}>
+                  {Icon && <Icon aria-hidden="true" />}
+                  {item.name}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
     </AnimatedSection>
   );
 }

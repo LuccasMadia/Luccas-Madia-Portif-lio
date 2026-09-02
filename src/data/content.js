@@ -187,20 +187,22 @@ export const projects = [
 ];
 
 export const skills = [
-  { name: 'React', icon: 'SiReact' },
-  { name: 'JavaScript', icon: 'SiJavascript' },
-  { name: 'Node.js', icon: 'SiNodedotjs' },
-  { name: 'Next.js', icon: 'SiNextdotjs' },
-  { name: 'Python', icon: 'SiPython' },
-  { name: 'MySQL', icon: 'SiMysql' },
-  { name: 'HTML5', icon: 'SiHtml5' },
-  { name: 'CSS3', icon: 'SiCss' },
-  { name: 'Gestão de Projetos', icon: 'FaTasks' },
-  { name: 'Excel Avançado', icon: 'FaFileExcel' },
-  { name: 'Power BI', icon: 'FaChartBar' },
-  { name: 'Git', icon: 'FaGitAlt' },
-  { name: 'Figma', icon: 'FaFigma' },
-  { name: 'Notion', icon: 'SiNotion' },
+  {
+    category: 'Gestão',
+    items: [
+      { name: 'Gestão de Projetos', icon: 'FaTasks' },
+      { name: 'Excel Avançado', icon: 'FaFileExcel' },
+      { name: 'Power BI', icon: 'FaChartBar' },
+    ],
+  },
+  {
+    category: 'Ferramentas',
+    items: [
+      { name: 'Git', icon: 'FaGitAlt' },
+      { name: 'Figma', icon: 'FaFigma' },
+      { name: 'Notion', icon: 'SiNotion' },
+    ],
+  },
 ];
 
 export const socials = {
