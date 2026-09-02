@@ -1,55 +1,47 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { NotebookFrame } from './NotebookFrame';
+import { ProjectImageCard } from './ProjectImageCard';
 
-describe('NotebookFrame', () => {
+describe('ProjectImageCard', () => {
   it('renders the first image with matching src and alt', () => {
-    render(<NotebookFrame images={['screenshot.png']} alt="Projeto X" />);
+    render(<ProjectImageCard images={['screenshot.png']} alt="Projeto X" />);
 
     const img = screen.getByRole('img', { name: 'Projeto X' });
     expect(img).toHaveAttribute('src', 'screenshot.png');
   });
 
   it('lazy-loads the image', () => {
-    render(<NotebookFrame images={['screenshot.png']} alt="Projeto X" />);
+    render(<ProjectImageCard images={['screenshot.png']} alt="Projeto X" />);
 
     expect(screen.getByRole('img', { name: 'Projeto X' })).toHaveAttribute('loading', 'lazy');
   });
 
-  it('hides decorative frame parts from assistive tech', () => {
-    const { container } = render(<NotebookFrame images={['screenshot.png']} alt="Projeto X" />);
-
-    const decorative = container.querySelectorAll('[aria-hidden="true"]');
-    expect(decorative.length).toBeGreaterThan(0);
-    expect(screen.getAllByRole('img')).toHaveLength(1);
-  });
-
   it('shows a gradient placeholder with an accessible name when there are no images', () => {
-    render(<NotebookFrame alt="Projeto Sem Imagem" gradientIndex={4} />);
+    render(<ProjectImageCard alt="Projeto Sem Imagem" gradientIndex={4} />);
 
     const placeholder = screen.getByRole('img', { name: 'Projeto Sem Imagem' });
     expect(placeholder.tagName).not.toBe('IMG');
-    expect(placeholder).toHaveClass('notebook-frame__screen--gradient-1');
+    expect(placeholder).toHaveClass('project-image-card__image--gradient-1');
   });
 
   describe('image navigation', () => {
     const images = ['a.png', 'b.png', 'c.png'];
 
     it('does not render navigation arrows when there is only one image', () => {
-      render(<NotebookFrame images={['a.png']} alt="Projeto X" />);
+      render(<ProjectImageCard images={['a.png']} alt="Projeto X" />);
 
       expect(screen.queryByRole('button', { name: 'Próxima imagem' })).not.toBeInTheDocument();
       expect(screen.queryByRole('button', { name: 'Imagem anterior' })).not.toBeInTheDocument();
     });
 
     it('does not render navigation arrows when there are no images', () => {
-      render(<NotebookFrame alt="Projeto X" />);
+      render(<ProjectImageCard alt="Projeto X" />);
 
       expect(screen.queryByRole('button', { name: 'Próxima imagem' })).not.toBeInTheDocument();
       expect(screen.queryByRole('button', { name: 'Imagem anterior' })).not.toBeInTheDocument();
     });
 
     it('shows the next image when clicking the next arrow, looping from the last back to the first', () => {
-      render(<NotebookFrame images={images} alt="Projeto X" />);
+      render(<ProjectImageCard images={images} alt="Projeto X" />);
       const next = screen.getByRole('button', { name: 'Próxima imagem' });
 
       fireEvent.click(next);
@@ -63,7 +55,7 @@ describe('NotebookFrame', () => {
     });
 
     it('shows the previous image, looping to the last when clicking previous from the first', () => {
-      render(<NotebookFrame images={images} alt="Projeto X" />);
+      render(<ProjectImageCard images={images} alt="Projeto X" />);
 
       fireEvent.click(screen.getByRole('button', { name: 'Imagem anterior' }));
 
@@ -74,7 +66,7 @@ describe('NotebookFrame', () => {
       const handleClick = vi.fn();
       render(
         <div onClick={handleClick}>
-          <NotebookFrame images={images} alt="Projeto X" />
+          <ProjectImageCard images={images} alt="Projeto X" />
         </div>
       );
 

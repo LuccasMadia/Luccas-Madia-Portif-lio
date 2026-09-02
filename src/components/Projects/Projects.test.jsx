@@ -18,44 +18,57 @@ const projects = [
     liveUrl: 'https://example.com/b',
     codeUrl: 'https://github.com/user/b',
   },
-  {
-    id: 'p3',
-    title: 'Projeto C',
-    description: 'Descrição C',
-    stack: ['Node'],
-    liveUrl: 'https://example.com/c',
-    codeUrl: 'https://github.com/user/c',
-  },
 ];
 
 describe('Projects', () => {
-  it('shows only the first project notebook initially', () => {
+  it('renders a numbered card for each project with its title', () => {
     render(<Projects projects={projects} />);
 
-    expect(screen.getByRole('img', { name: 'Projeto A' })).toBeInTheDocument();
-    expect(screen.queryByRole('img', { name: 'Projeto B' })).not.toBeInTheDocument();
-    expect(screen.queryByRole('img', { name: 'Projeto C' })).not.toBeInTheDocument();
+    expect(screen.getByText('01')).toBeInTheDocument();
+    expect(screen.getByText('02')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Projeto A' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Projeto B' })).toBeInTheDocument();
   });
 
-  it('shows the first image as the notebook cover when the project has images', () => {
+  it('renders project details and a "Visitar site" link that opens in a new tab', () => {
+    render(<Projects projects={[projects[0]]} />);
+
+    expect(screen.getByText('React')).toBeInTheDocument();
+    expect(screen.getByText('Vite')).toBeInTheDocument();
+    expect(screen.getByText('Descrição A')).toBeInTheDocument();
+
+    const liveLink = screen.getByRole('link', { name: 'Visitar site' });
+    expect(liveLink).toHaveAttribute('href', 'https://example.com/a');
+    expect(liveLink).toHaveAttribute('target', '_blank');
+    expect(liveLink).toHaveAttribute('rel', 'noopener noreferrer');
+
+    const codeLink = screen.getByRole('link', { name: 'Ver código no GitHub' });
+    expect(codeLink).toHaveAttribute('href', 'https://github.com/user/a');
+  });
+
+  it('renders a pending GitHub icon when the project has no codeUrl yet', () => {
+    const project = { ...projects[0], codeUrl: undefined };
+    render(<Projects projects={[project]} />);
+
+    expect(screen.queryByRole('link', { name: 'Ver código no GitHub' })).not.toBeInTheDocument();
+    expect(screen.getByLabelText('Código em breve')).toBeInTheDocument();
+  });
+
+  it('does not render "Visitar site" when the project has no liveUrl', () => {
+    const project = { ...projects[0], liveUrl: undefined };
+    render(<Projects projects={[project]} />);
+
+    expect(screen.queryByRole('link', { name: 'Visitar site' })).not.toBeInTheDocument();
+  });
+
+  it('shows the first image as the visual cover when the project has images', () => {
     const project = { ...projects[0], liveUrl: undefined, images: ['a.png', 'b.png'] };
     render(<Projects projects={[project]} />);
 
     expect(screen.getByRole('img', { name: 'Projeto A' })).toHaveAttribute('src', 'a.png');
   });
 
-  it('shows the first case study image as the notebook cover when the project has no plain images', () => {
-    const project = {
-      ...projects[0],
-      liveUrl: undefined,
-      caseStudy: [{ titulo: 'Tela inicial', imagem: 'inicio.png', descricao: 'Descrição da tela inicial.' }],
-    };
-    render(<Projects projects={[project]} />);
-
-    expect(screen.getByRole('img', { name: 'Projeto A' })).toHaveAttribute('src', 'inicio.png');
-  });
-
-  it('shows a gradient placeholder screen when the project has no images or case study', () => {
+  it('shows a gradient placeholder when the project has no images or case study', () => {
     const project = { ...projects[0], liveUrl: undefined };
     render(<Projects projects={[project]} />);
 
@@ -63,34 +76,21 @@ describe('Projects', () => {
     expect(placeholder.tagName).not.toBe('IMG');
   });
 
-  it('shows the active project title, description and stack beside the notebook', () => {
+  it('opens the site in a new tab when clicking the visual of a project that only has a liveUrl', () => {
     render(<Projects projects={[projects[0]]} />);
 
-    expect(screen.getByRole('heading', { name: 'Projeto A' })).toBeInTheDocument();
-    expect(screen.getByText('Descrição A')).toBeInTheDocument();
-    expect(screen.getByText('React')).toBeInTheDocument();
-    expect(screen.getByText('Vite')).toBeInTheDocument();
+    const links = screen.getAllByRole('link', { name: /visitar site de projeto a/i });
+    expect(links[0]).toHaveAttribute('href', 'https://example.com/a');
   });
 
-  it('opens the site in a new tab when clicking a project that only has a liveUrl', () => {
-    render(<Projects projects={[projects[0]]} />);
-
-    const link = screen.getByRole('link', { name: /projeto a/i });
-    expect(link).toHaveAttribute('href', 'https://example.com/a');
-    expect(link).toHaveAttribute('target', '_blank');
-    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
-  });
-
-  it('opens the case study modal when clicking a project with case study entries, even if it also has a liveUrl', () => {
+  it('opens the case study modal when clicking the visual of a project with case study entries', () => {
     const project = {
       ...projects[0],
       caseStudy: [{ titulo: 'Tela inicial', imagem: 'inicio.png', descricao: 'Descrição da tela inicial.' }],
     };
     render(<Projects projects={[project]} />);
 
-    expect(screen.queryByRole('link', { name: /projeto a/i })).not.toBeInTheDocument();
-
-    fireEvent.click(screen.getByRole('button', { name: /projeto a/i }));
+    fireEvent.click(screen.getByRole('button', { name: /ver projeto projeto a/i }));
 
     expect(screen.getByText('Descrição da tela inicial.')).toBeInTheDocument();
   });
@@ -99,7 +99,7 @@ describe('Projects', () => {
     const project = { ...projects[0], liveUrl: undefined, images: ['a.png', 'b.png'] };
     render(<Projects projects={[project]} />);
 
-    fireEvent.click(screen.getByRole('button', { name: /projeto a/i }));
+    fireEvent.click(screen.getByRole('button', { name: /ver projeto projeto a/i }));
 
     expect(screen.getAllByRole('img').some((img) => img.getAttribute('src') === 'a.png')).toBe(true);
   });
@@ -108,97 +108,34 @@ describe('Projects', () => {
     const project = { ...projects[0], liveUrl: undefined };
     render(<Projects projects={[project]} />);
 
-    expect(screen.queryByRole('link')).not.toBeInTheDocument();
-    expect(document.querySelector('.project-notebook-trigger')).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /visitar site/i })).not.toBeInTheDocument();
+    expect(document.querySelector('.project-image-trigger')).not.toBeInTheDocument();
   });
 
-  describe('notebook image navigation', () => {
-    it('cycles through the active project own images using the internal arrows', () => {
+  describe('image navigation', () => {
+    it('cycles through a project own images using its internal arrows without opening the case study modal', () => {
       const project = { ...projects[0], liveUrl: undefined, images: ['a.png', 'b.png'] };
       render(<Projects projects={[project]} />);
 
       fireEvent.click(screen.getByRole('button', { name: 'Próxima imagem' }));
 
       expect(screen.getByRole('img', { name: 'Projeto A' })).toHaveAttribute('src', 'b.png');
-    });
-
-    it('does not open the case study modal when clicking an image navigation arrow', () => {
-      const project = { ...projects[0], liveUrl: undefined, images: ['a.png', 'b.png'] };
-      render(<Projects projects={[project]} />);
-
-      fireEvent.click(screen.getByRole('button', { name: 'Próxima imagem' }));
-
       expect(document.querySelector('.case-study-modal')).not.toBeInTheDocument();
     });
 
-    it('resets to the first image when switching to another project and back', () => {
+    it('keeps each project image gallery independent from the others', () => {
       const projectA = { ...projects[0], liveUrl: undefined, images: ['a1.png', 'a2.png'] };
       const projectB = { ...projects[1], liveUrl: undefined, images: ['b1.png', 'b2.png'] };
       render(<Projects projects={[projectA, projectB]} />);
 
-      fireEvent.click(screen.getByRole('button', { name: 'Próxima imagem' }));
+      const [cardA, cardB] = screen.getAllByRole('button', { name: 'Próxima imagem' });
+      fireEvent.click(cardA);
+
       expect(screen.getByRole('img', { name: 'Projeto A' })).toHaveAttribute('src', 'a2.png');
+      expect(screen.getByRole('img', { name: 'Projeto B' })).toHaveAttribute('src', 'b1.png');
 
-      fireEvent.click(screen.getByRole('button', { name: 'Próximo projeto' }));
-      fireEvent.click(screen.getByRole('button', { name: 'Projeto anterior' }));
-
-      expect(screen.getByRole('img', { name: 'Projeto A' })).toHaveAttribute('src', 'a1.png');
-    });
-  });
-
-  describe('carousel navigation', () => {
-    it('shows the next project when clicking the next arrow, looping from the last back to the first', () => {
-      render(<Projects projects={projects} />);
-      const next = screen.getByRole('button', { name: 'Próximo projeto' });
-
-      fireEvent.click(next);
-      expect(screen.getByRole('img', { name: 'Projeto B' })).toBeInTheDocument();
-
-      fireEvent.click(next);
-      expect(screen.getByRole('img', { name: 'Projeto C' })).toBeInTheDocument();
-
-      fireEvent.click(next);
-      expect(screen.getByRole('img', { name: 'Projeto A' })).toBeInTheDocument();
-    });
-
-    it('shows the previous project when clicking the previous arrow, looping from the first back to the last', () => {
-      render(<Projects projects={projects} />);
-
-      fireEvent.click(screen.getByRole('button', { name: 'Projeto anterior' }));
-
-      expect(screen.getByRole('img', { name: 'Projeto C' })).toBeInTheDocument();
-    });
-
-    it('jumps directly to a project by clicking its dot', () => {
-      render(<Projects projects={projects} />);
-
-      fireEvent.click(screen.getByRole('button', { name: 'Ir para o projeto Projeto C' }));
-
-      expect(screen.getByRole('img', { name: 'Projeto C' })).toBeInTheDocument();
-    });
-
-    it('marks the dot of the active project as current', () => {
-      render(<Projects projects={projects} />);
-
-      expect(screen.getByRole('button', { name: 'Ir para o projeto Projeto A' })).toHaveAttribute(
-        'aria-current',
-        'true'
-      );
-
-      fireEvent.click(screen.getByRole('button', { name: 'Próximo projeto' }));
-
-      expect(screen.getByRole('button', { name: 'Ir para o projeto Projeto B' })).toHaveAttribute(
-        'aria-current',
-        'true'
-      );
-    });
-
-    it('hides the arrows and dots when there is only one project', () => {
-      render(<Projects projects={[projects[0]]} />);
-
-      expect(screen.queryByRole('button', { name: 'Próximo projeto' })).not.toBeInTheDocument();
-      expect(screen.queryByRole('button', { name: 'Projeto anterior' })).not.toBeInTheDocument();
-      expect(screen.queryByRole('button', { name: /ir para o projeto/i })).not.toBeInTheDocument();
+      fireEvent.click(cardB);
+      expect(screen.getByRole('img', { name: 'Projeto B' })).toHaveAttribute('src', 'b2.png');
     });
   });
 });
