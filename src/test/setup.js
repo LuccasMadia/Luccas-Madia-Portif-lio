@@ -43,3 +43,7 @@ if (!global.requestAnimationFrame) {
 if (!Element.prototype.scrollIntoView) {
   Element.prototype.scrollIntoView = () => {};
 }
+
+// jsdom's built-in play/pause stubs log a "not implemented" error and reject.
+window.HTMLMediaElement.prototype.play = () => Promise.resolve();
+window.HTMLMediaElement.prototype.pause = () => {};
