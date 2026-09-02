@@ -8,10 +8,16 @@ const socials = {
 };
 
 describe('Contact', () => {
+  it('renders a "Chamar no WhatsApp" CTA linking to WhatsApp', () => {
+    render(<Contact socials={socials} />);
+
+    expect(screen.getByText('Vamos transformar sua ideia em realidade')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /WhatsApp/i })).toHaveAttribute('href', socials.whatsapp);
+  });
+
   it('renders a link for each social channel with the correct href', () => {
     render(<Contact socials={socials} />);
 
-    expect(screen.getByRole('link', { name: /WhatsApp/i })).toHaveAttribute('href', socials.whatsapp);
     expect(screen.getByRole('link', { name: /LinkedIn/i })).toHaveAttribute('href', socials.linkedin);
     expect(screen.getByRole('link', { name: /GitHub/i })).toHaveAttribute('href', socials.github);
   });
