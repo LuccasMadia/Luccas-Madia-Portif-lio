@@ -4,7 +4,9 @@ import './CustomCursor.css';
 export function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isTouch] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
+    () =>
+      typeof window !== 'undefined' &&
+      window.matchMedia('(pointer: coarse), (max-width: 768px)').matches
   );
 
   useEffect(() => {

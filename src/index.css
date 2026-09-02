@@ -43,7 +43,7 @@ body {
   cursor: none;
 }
 
-@media (pointer: coarse) {
+@media (pointer: coarse), (max-width: 768px) {
   body {
     cursor: auto;
   }
