@@ -12,7 +12,17 @@ import {
   FaGitAlt,
   FaFigma,
 } from 'react-icons/fa';
-import { SiNotion } from 'react-icons/si';
+import {
+  SiNotion,
+  SiReact,
+  SiJavascript,
+  SiNodedotjs,
+  SiNextdotjs,
+  SiPython,
+  SiMysql,
+  SiHtml5,
+  SiCss,
+} from 'react-icons/si';
 
 export const iconMap = {
   FaCode,
@@ -28,4 +38,12 @@ export const iconMap = {
   FaGitAlt,
   FaFigma,
   SiNotion,
+  SiReact,
+  SiJavascript,
+  SiNodedotjs,
+  SiNextdotjs,
+  SiPython,
+  SiMysql,
+  SiHtml5,
+  SiCss,
 };

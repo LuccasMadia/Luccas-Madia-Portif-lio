@@ -14,6 +14,15 @@ describe('iconMap', () => {
       'FaFileExcel',
       'FaGitAlt',
       'FaFigma',
+      'SiNotion',
+      'SiReact',
+      'SiJavascript',
+      'SiNodedotjs',
+      'SiNextdotjs',
+      'SiPython',
+      'SiMysql',
+      'SiHtml5',
+      'SiCss',
     ];
 
     keys.forEach((key) => {
