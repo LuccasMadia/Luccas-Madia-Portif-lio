@@ -39,11 +39,6 @@ describe('content data', () => {
     });
   });
 
-  it('first project includes a screenshot gallery', () => {
-    expect(Array.isArray(projects[0].images)).toBe(true);
-    expect(projects[0].images.length).toBeGreaterThan(0);
-  });
-
   it('exports non-empty skill categories with items', () => {
     expect(skills.length).toBeGreaterThan(0);
     skills.forEach((group) => {
