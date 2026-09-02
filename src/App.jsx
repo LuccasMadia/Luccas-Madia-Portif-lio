@@ -6,6 +6,7 @@ import { Skills } from './components/Skills/Skills';
 import { Contact } from './components/Contact/Contact';
 import { Footer } from './components/Footer/Footer';
 import { CustomCursor } from './components/CustomCursor/CustomCursor';
+import { WhatsAppButton } from './components/WhatsAppButton/WhatsAppButton';
 import { about, services, projects, skills, socials } from './data/content';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Contact socials={socials} />
       </main>
       <Footer name={about.name} />
+      <WhatsAppButton href={socials.whatsapp} />
     </>
   );
 }
