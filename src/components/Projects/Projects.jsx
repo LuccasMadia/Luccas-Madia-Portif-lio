@@ -17,7 +17,9 @@ function ProjectCard({ project, index, onOpenCaseStudy }) {
   const number = String(index + 1).padStart(2, '0');
   const hasGallery = Boolean(project.images?.length || project.caseStudy?.length);
   const gallery = project.images?.length ? project.images : project.caseStudy?.map((area) => area.imagem) ?? [];
-  const visual = <ProjectImageCard images={gallery} alt={project.title} gradientIndex={index} />;
+  const visual = (
+    <ProjectImageCard video={project.video} images={gallery} alt={project.title} gradientIndex={index} />
+  );
 
   let interactiveVisual = visual;
   if (hasGallery) {
@@ -86,20 +88,30 @@ function ProjectCard({ project, index, onOpenCaseStudy }) {
   );
 }
 
+const PREVIEW_LIMIT = 3;
+
 export function Projects({ projects }) {
   const [caseStudyProject, setCaseStudyProject] = useState(null);
+  const previewProjects = projects.slice(0, PREVIEW_LIMIT);
 
   return (
     <section id="projetos" className="projects">
-      <p className="section-label">Portfólio</p>
-      <h2 className="section-title">Projetos</h2>
+      <div className="projects__heading">
+        <div>
+          <p className="section-label">Portfólio</p>
+          <h2 className="section-title">Projetos</h2>
+        </div>
+        <a href="/projetos" className="btn btn--outline">
+          Ver mais projetos
+        </a>
+      </div>
       <p className="projects__note">
         Alguns projetos não estão listados aqui por serem sistemas internos de empresas (como controle de
         agendamento de exames, controle de férias, entre outros) que lidam com informações sensíveis e por isso
         não podem ser exibidos publicamente.
       </p>
       <div className="projects__stack">
-        {projects.map((project, index) => (
+        {previewProjects.map((project, index) => (
           <ProjectCard project={project} index={index} onOpenCaseStudy={setCaseStudyProject} key={project.id} />
         ))}
       </div>

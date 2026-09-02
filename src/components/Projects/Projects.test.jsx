@@ -21,6 +21,27 @@ const projects = [
 ];
 
 describe('Projects', () => {
+  it('renders a "Ver mais projetos" link pointing to the dedicated projects page', () => {
+    render(<Projects projects={projects} />);
+
+    const link = screen.getByRole('link', { name: 'Ver mais projetos' });
+    expect(link).toHaveAttribute('href', '/projetos');
+  });
+
+  it('only renders the first 3 projects, even when more are passed', () => {
+    const manyProjects = [
+      ...projects,
+      { id: 'p3', title: 'Projeto C', description: 'Descrição C', stack: ['Node'] },
+      { id: 'p4', title: 'Projeto D', description: 'Descrição D', stack: ['Go'] },
+    ];
+    render(<Projects projects={manyProjects} />);
+
+    expect(screen.getByRole('heading', { name: 'Projeto A' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Projeto B' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Projeto C' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Projeto D' })).not.toBeInTheDocument();
+  });
+
   it('renders a numbered card for each project with its title', () => {
     render(<Projects projects={projects} />);
 
