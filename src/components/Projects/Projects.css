@@ -29,11 +29,36 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  border: 1px solid var(--border);
-  border-radius: 20px;
+  position: relative;
+  border: 3px solid transparent;
+  border-radius: 25px;
   padding: 1.75rem;
-  background: var(--bg-alt-2);
+  background:
+    linear-gradient(var(--bg-alt-2), var(--bg-alt-2)) padding-box,
+    linear-gradient(
+      115deg,
+      var(--border) 0%,
+      var(--border) 20%,
+      var(--accent) 50%,
+      var(--border) 60%,
+      var(--border) 100%
+    ) border-box;
+  background-size: 100% 100%, 280% 280%;
+  background-position: 0 0, 100% 50%;
+  animation: project-card-shine 15s linear infinite;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes project-card-shine {
+  to {
+    background-position: 0 0, -180% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card {
+    animation: none;
+  }
 }
 
 .project-card__info {
