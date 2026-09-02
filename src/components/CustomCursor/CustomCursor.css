@@ -12,3 +12,9 @@
   mix-blend-mode: difference;
   transition: transform 0.08s ease-out;
 }
+
+@media (max-width: 768px) {
+  .custom-cursor {
+    display: none;
+  }
+}
