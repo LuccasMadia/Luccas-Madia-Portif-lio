@@ -44,14 +44,10 @@ describe('content data', () => {
     expect(projects[0].images.length).toBeGreaterThan(0);
   });
 
-  it('exports non-empty skill categories with items', () => {
+  it('exports a non-empty flat skills list', () => {
     expect(skills.length).toBeGreaterThan(0);
-    skills.forEach((group) => {
-      expect(group.category).toEqual(expect.any(String));
-      expect(group.items.length).toBeGreaterThan(0);
-      group.items.forEach((item) => {
-        expect(item).toMatchObject({ name: expect.any(String), icon: expect.any(String) });
-      });
+    skills.forEach((item) => {
+      expect(item).toMatchObject({ name: expect.any(String), icon: expect.any(String) });
     });
   });
 
