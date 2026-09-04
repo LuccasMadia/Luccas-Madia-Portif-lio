@@ -1,6 +1,8 @@
 // EDITAR AQUI: troque todo o conteúdo abaixo pelas suas informações reais.
 
 import canecasDemo from '../assets/projects/canecas/canecas-demo.webm';
+import pingouDemo from '../assets/projects/pingou/pingou-demo.webm';
+import pingouPoster from '../assets/projects/pingou/pingou-poster.jpg';
 
 import rangoHero from '../assets/projects/rango-do-bicho/rango-00-hero.png';
 import rangoProdutos from '../assets/projects/rango-do-bicho/rango-01-produtos.png';
@@ -104,6 +106,18 @@ export const projects = [
     liveUrl: 'https://popy-ladinpage.vercel.app/',
     codeUrl: 'https://github.com/LuccasMadia/Popy-Ladinpage.git',
     images: [popyHero, popy01, popy02, popy03, popy04, popy05],
+  },
+  {
+    id: 'proj-4',
+    title: 'Sorveteria Pingou',
+    description:
+      'Cardápio digital para uma sorveteria fictícia, criado como vitrine do tipo de trabalho que faço: apresentação dos sabores com fotos reais dos produtos, navegação simples e visual atrativo.',
+    stack: ['HTML', 'CSS', 'JavaScript'],
+    status: 'Em funcionamento',
+    video: pingouDemo,
+    poster: pingouPoster,
+    liveUrl: 'https://www.luccasmadia.com.br/',
+    codeUrl: 'https://github.com/LuccasMadia/pingou-sorvetria-landingpage.git',
   },
 ];
 

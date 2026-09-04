@@ -12,7 +12,7 @@ function formatTime(seconds) {
   return `${minutes}:${String(secs).padStart(2, '0')}`;
 }
 
-export function ProjectImageCard({ video, images = [], alt, gradientIndex = 0 }) {
+export function ProjectImageCard({ video, poster, images = [], alt, gradientIndex = 0 }) {
   const [imageIndex, setImageIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -101,6 +101,7 @@ export function ProjectImageCard({ video, images = [], alt, gradientIndex = 0 })
           <video
             ref={videoRef}
             src={video}
+            poster={poster}
             className="project-image-card__image"
             muted
             playsInline
