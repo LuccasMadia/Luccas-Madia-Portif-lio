@@ -2,6 +2,27 @@
 
 import canecasDemo from '../assets/projects/canecas/canecas-demo.webm';
 
+import rangoHero from '../assets/projects/rango-do-bicho/rango-00-hero.png';
+import rangoProdutos from '../assets/projects/rango-do-bicho/rango-01-produtos.png';
+import rangoHistoria from '../assets/projects/rango-do-bicho/rango-02-historia.png';
+import rango03 from '../assets/projects/rango-do-bicho/rango-03.png';
+import rango04 from '../assets/projects/rango-do-bicho/rango-04.png';
+import rango05 from '../assets/projects/rango-do-bicho/rango-05.png';
+import rango06 from '../assets/projects/rango-do-bicho/rango-06.png';
+import rango07 from '../assets/projects/rango-do-bicho/rango-07.png';
+import rango08 from '../assets/projects/rango-do-bicho/rango-08.png';
+import rango09 from '../assets/projects/rango-do-bicho/rango-09.png';
+import rango10 from '../assets/projects/rango-do-bicho/rango-10.png';
+import rango11 from '../assets/projects/rango-do-bicho/rango-11.png';
+import rango12 from '../assets/projects/rango-do-bicho/rango-12.png';
+
+import popyHero from '../assets/projects/popy/popy-00-hero.png';
+import popy01 from '../assets/projects/popy/popy-01.png';
+import popy02 from '../assets/projects/popy/popy-02.png';
+import popy03 from '../assets/projects/popy/popy-03.png';
+import popy04 from '../assets/projects/popy/popy-04.png';
+import popy05 from '../assets/projects/popy/popy-05.png';
+
 export const about = {
   name: 'Luccas Madia',
   role: 'Desenvolvedor & Consultor de Gestão',
@@ -57,6 +78,21 @@ export const projects = [
     status: 'Em desenvolvimento',
     liveUrl: 'https://rango-do-bicho-site.vercel.app/',
     codeUrl: 'https://github.com/LuccasMadia/Rango-do-bicho-site.git',
+    images: [
+      rangoHero,
+      rangoProdutos,
+      rangoHistoria,
+      rango03,
+      rango04,
+      rango05,
+      rango06,
+      rango07,
+      rango08,
+      rango09,
+      rango10,
+      rango11,
+      rango12,
+    ],
   },
   {
     id: 'proj-3',
@@ -67,6 +103,7 @@ export const projects = [
     status: 'Em desenvolvimento',
     liveUrl: 'https://popy-ladinpage.vercel.app/',
     codeUrl: 'https://github.com/LuccasMadia/Popy-Ladinpage.git',
+    images: [popyHero, popy01, popy02, popy03, popy04, popy05],
   },
 ];
 
