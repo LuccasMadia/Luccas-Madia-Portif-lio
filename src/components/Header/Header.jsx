@@ -20,8 +20,13 @@ export function Header({ name }) {
   const { theme, toggleTheme } = useTheme();
 
   const closeMenu = () => setIsMenuOpen(false);
+  const isHome = typeof window !== 'undefined' && window.location.pathname === '/';
 
   const handleNavClick = (event, id) => {
+    if (!isHome) {
+      closeMenu();
+      return;
+    }
     event.preventDefault();
     scrollToSection(id);
     closeMenu();
@@ -30,7 +35,11 @@ export function Header({ name }) {
   return (
     <header className="header">
       <div className="header__inner">
-        <a href="#sobre" className="header__logo" onClick={(event) => handleNavClick(event, 'sobre')}>
+        <a
+          href={isHome ? '#sobre' : '/#sobre'}
+          className="header__logo"
+          onClick={(event) => handleNavClick(event, 'sobre')}
+        >
           <img src={logoMark} alt={name} className="header__logo-image" />
         </a>
         <div className="header__actions">
@@ -38,7 +47,7 @@ export function Header({ name }) {
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.id}
-                href={`#${item.id}`}
+                href={isHome ? `#${item.id}` : `/#${item.id}`}
                 className={`header__link ${activeId === item.id ? 'header__link--active' : ''}`}
                 onClick={(event) => handleNavClick(event, item.id)}
               >

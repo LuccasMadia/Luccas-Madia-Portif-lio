@@ -28,18 +28,22 @@ describe('Projects', () => {
     expect(link).toHaveAttribute('href', '/projetos');
   });
 
-  it('only renders the first 3 projects, even when more are passed', () => {
+  it('only renders the first 5 projects, even when more are passed', () => {
     const manyProjects = [
       ...projects,
       { id: 'p3', title: 'Projeto C', description: 'Descrição C', stack: ['Node'] },
       { id: 'p4', title: 'Projeto D', description: 'Descrição D', stack: ['Go'] },
+      { id: 'p5', title: 'Projeto E', description: 'Descrição E', stack: ['Rust'] },
+      { id: 'p6', title: 'Projeto F', description: 'Descrição F', stack: ['Java'] },
     ];
     render(<Projects projects={manyProjects} />);
 
     expect(screen.getByRole('heading', { name: 'Projeto A' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Projeto B' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Projeto C' })).toBeInTheDocument();
-    expect(screen.queryByRole('heading', { name: 'Projeto D' })).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Projeto D' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Projeto E' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Projeto F' })).not.toBeInTheDocument();
   });
 
   it('renders a numbered card for each project with its title', () => {
