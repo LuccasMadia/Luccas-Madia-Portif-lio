@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  --bg: #1a1a1a;
-  --bg-alt: #141414;
-  --bg-alt-2: #232323;
+  --bg: #2b2b2b;
+  --bg-alt: #222222;
+  --bg-alt-2: #363636;
   --accent: #2dd4bf;
   --accent-dark: #14b8a6;
   --text: #eafffb;
   --text-muted: #8a9a97;
   --border: rgba(45, 212, 191, 0.2);
-  --header-bg: rgba(26, 26, 26, 0.75);
+  --header-bg: rgba(43, 43, 43, 0.75);
   --font-heading: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
   --max-width: 1120px;
