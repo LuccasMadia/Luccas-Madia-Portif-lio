@@ -3,7 +3,7 @@ import { FaGithub } from 'react-icons/fa';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ProjectImageCard } from './ProjectImageCard';
 
-export function ProjectCard({ project, index, onOpenCaseStudy }) {
+export function ProjectCard({ project, index, onOpenCaseStudy, layout = 'sticky' }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -51,41 +51,54 @@ export function ProjectCard({ project, index, onOpenCaseStudy }) {
     );
   }
 
+  const info = (
+    <div className="project-card__info">
+      <span className="project-card__number">{number}</span>
+      <h3 className="project-card__title">{project.title}</h3>
+      <p className="project-card__description">{project.description}</p>
+      <ul className="project-card__stack">
+        {project.stack.map((tech) => (
+          <li key={tech}>{tech}</li>
+        ))}
+      </ul>
+      <div className="project-card__actions">
+        {project.liveUrl && (
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn--outline">
+            Visitar site
+          </a>
+        )}
+        {project.codeUrl ? (
+          <a
+            href={project.codeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ver código no GitHub"
+            className="project-card__code-link"
+          >
+            <FaGithub aria-hidden="true" />
+          </a>
+        ) : (
+          <span aria-label="Código em breve" className="project-card__code-link project-card__code-link--pending">
+            <FaGithub aria-hidden="true" />
+          </span>
+        )}
+      </div>
+    </div>
+  );
+
+  if (layout === 'grid') {
+    return (
+      <article className="project-card project-card--grid">
+        <div className="project-card__visual">{interactiveVisual}</div>
+        {info}
+      </article>
+    );
+  }
+
   return (
     <div className="project-sticky" style={{ top: `${90 + index * 16}px`, zIndex: index + 1 }} ref={ref}>
       <motion.article className="project-card" style={{ scale, opacity }}>
-        <div className="project-card__info">
-          <span className="project-card__number">{number}</span>
-          <h3 className="project-card__title">{project.title}</h3>
-          <p className="project-card__description">{project.description}</p>
-          <ul className="project-card__stack">
-            {project.stack.map((tech) => (
-              <li key={tech}>{tech}</li>
-            ))}
-          </ul>
-          <div className="project-card__actions">
-            {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn--outline">
-                Visitar site
-              </a>
-            )}
-            {project.codeUrl ? (
-              <a
-                href={project.codeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Ver código no GitHub"
-                className="project-card__code-link"
-              >
-                <FaGithub aria-hidden="true" />
-              </a>
-            ) : (
-              <span aria-label="Código em breve" className="project-card__code-link project-card__code-link--pending">
-                <FaGithub aria-hidden="true" />
-              </span>
-            )}
-          </div>
-        </div>
+        {info}
         <div className="project-card__visual">{interactiveVisual}</div>
       </motion.article>
     </div>

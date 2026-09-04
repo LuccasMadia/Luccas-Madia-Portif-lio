@@ -1,13 +1,40 @@
+import { useMemo, useState } from 'react';
 import { Header } from '../components/Header/Header';
 import { Footer } from '../components/Footer/Footer';
 import { CustomCursor } from '../components/CustomCursor/CustomCursor';
 import { WhatsAppButton } from '../components/WhatsAppButton/WhatsAppButton';
-import { ProjectsStack } from '../components/Projects/ProjectsStack';
+import { ProjectsFilterBar } from '../components/Projects/ProjectsFilterBar';
+import { ProjectsGrid } from '../components/Projects/ProjectsGrid';
 import { about, projects, socials } from '../data/content';
 import '../components/Projects/Projects.css';
 import './ProjectsPage.css';
 
 export function ProjectsPage() {
+  const [search, setSearch] = useState('');
+  const [activeStacks, setActiveStacks] = useState([]);
+
+  const stacks = useMemo(() => [...new Set(projects.flatMap((project) => project.stack))], []);
+
+  const toggleStack = (tech) => {
+    if (tech === null) {
+      setActiveStacks([]);
+      return;
+    }
+    setActiveStacks((current) =>
+      current.includes(tech) ? current.filter((item) => item !== tech) : [...current, tech]
+    );
+  };
+
+  const filteredProjects = useMemo(() => {
+    const term = search.trim().toLowerCase();
+    return projects.filter((project) => {
+      const matchesSearch =
+        !term || project.title.toLowerCase().includes(term) || project.description.toLowerCase().includes(term);
+      const matchesStack = activeStacks.length === 0 || activeStacks.some((tech) => project.stack.includes(tech));
+      return matchesSearch && matchesStack;
+    });
+  }, [search, activeStacks]);
+
   return (
     <>
       <CustomCursor />
@@ -28,7 +55,14 @@ export function ProjectsPage() {
             agendamento de exames, controle de férias, entre outros) que lidam com informações sensíveis e por isso
             não podem ser exibidos publicamente.
           </p>
-          <ProjectsStack projects={projects} />
+          <ProjectsFilterBar
+            search={search}
+            onSearchChange={setSearch}
+            stacks={stacks}
+            activeStacks={activeStacks}
+            onToggleStack={toggleStack}
+          />
+          <ProjectsGrid projects={filteredProjects} />
         </section>
       </main>
       <Footer name={about.name} />
