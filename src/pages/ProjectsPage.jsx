@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import { Header } from '../components/Header/Header';
 import { Footer } from '../components/Footer/Footer';
 import { CustomCursor } from '../components/CustomCursor/CustomCursor';
 import { WhatsAppButton } from '../components/WhatsAppButton/WhatsAppButton';
@@ -9,11 +8,28 @@ import { about, projects, socials } from '../data/content';
 import '../components/Projects/Projects.css';
 import './ProjectsPage.css';
 
+const CATEGORY_ORDER = ['Landing page', 'Site institucional', 'E-commerce', 'Sistemas'];
+
 export function ProjectsPage() {
   const [search, setSearch] = useState('');
+  const [activeCategories, setActiveCategories] = useState([]);
   const [activeStacks, setActiveStacks] = useState([]);
 
+  const categories = useMemo(() => {
+    const present = new Set(projects.map((project) => project.category));
+    return CATEGORY_ORDER.filter((category) => present.has(category));
+  }, []);
   const stacks = useMemo(() => [...new Set(projects.flatMap((project) => project.stack))], []);
+
+  const toggleCategory = (category) => {
+    if (category === null) {
+      setActiveCategories([]);
+      return;
+    }
+    setActiveCategories((current) =>
+      current.includes(category) ? current.filter((item) => item !== category) : [...current, category]
+    );
+  };
 
   const toggleStack = (tech) => {
     if (tech === null) {
@@ -30,15 +46,15 @@ export function ProjectsPage() {
     return projects.filter((project) => {
       const matchesSearch =
         !term || project.title.toLowerCase().includes(term) || project.description.toLowerCase().includes(term);
+      const matchesCategory = activeCategories.length === 0 || activeCategories.includes(project.category);
       const matchesStack = activeStacks.length === 0 || activeStacks.some((tech) => project.stack.includes(tech));
-      return matchesSearch && matchesStack;
+      return matchesSearch && matchesCategory && matchesStack;
     });
-  }, [search, activeStacks]);
+  }, [search, activeCategories, activeStacks]);
 
   return (
     <>
       <CustomCursor />
-      <Header name={about.name} />
       <main>
         <section className="projects projects-page">
           <a href="/" className="projects-page__back">
@@ -58,6 +74,9 @@ export function ProjectsPage() {
           <ProjectsFilterBar
             search={search}
             onSearchChange={setSearch}
+            categories={categories}
+            activeCategories={activeCategories}
+            onToggleCategory={toggleCategory}
             stacks={stacks}
             activeStacks={activeStacks}
             onToggleStack={toggleStack}

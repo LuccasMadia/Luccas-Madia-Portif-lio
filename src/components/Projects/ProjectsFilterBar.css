@@ -1,17 +1,41 @@
 .projects-filter-bar {
   display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 0 0 2.5rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
+}
+
+.projects-filter-bar__divider {
+  height: 1px;
+  border: none;
+  margin: 0;
+  background: var(--border);
+}
+
+.projects-filter-bar__group {
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
-  margin: 0 0 2.5rem;
+}
+
+.projects-filter-bar__group-label {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .projects-filter-bar__search {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  flex: 1 1 240px;
-  min-width: 220px;
+  width: 100%;
   padding: 0.65rem 1.1rem;
   border-radius: 999px;
   border: 1px solid var(--border);

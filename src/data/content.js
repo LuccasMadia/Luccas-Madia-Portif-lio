@@ -66,6 +66,7 @@ export const projects = [
     title: 'Canecas da Dri',
     description:
       'Sistema desktop de gestão de estoque para uma loja de canecas personalizadas, com controle de insumos, produtos, pedidos, clientes, fornecedores e relatórios.',
+    category: 'Sistemas',
     stack: ['Python', 'Tkinter/PyQt'],
     status: 'Em funcionamento',
     video: canecasDemo,
@@ -76,6 +77,7 @@ export const projects = [
     title: 'Rango do Bicho',
     description:
       'Site institucional e catálogo de produtos para uma casa de ração de bairro, com vitrine de produtos filtrável por categoria, carrinho e pedido direto via WhatsApp.',
+    category: 'E-commerce',
     stack: ['Next.js', 'Banco de Dados'],
     status: 'Em desenvolvimento',
     liveUrl: 'https://rango-do-bicho-site.vercel.app/',
@@ -101,6 +103,7 @@ export const projects = [
     title: 'Popy',
     description:
       'Landing page para uma marca de sucos naturais captar parceiros comerciais, com apresentação dos sabores, diferenciais da marca e formulário de contato, usando imagens de produto geradas por IA.',
+    category: 'Landing page',
     stack: ['Next.js', 'Geração de imagens com IA'],
     status: 'Em desenvolvimento',
     liveUrl: 'https://popy-ladinpage.vercel.app/',
@@ -112,6 +115,7 @@ export const projects = [
     title: 'Sorveteria Pingou',
     description:
       'Cardápio digital para uma sorveteria fictícia, criado como vitrine do tipo de trabalho que faço: apresentação dos sabores com fotos reais dos produtos, navegação simples e visual atrativo.',
+    category: 'Landing page',
     stack: ['HTML', 'CSS', 'JavaScript'],
     status: 'Em funcionamento',
     video: pingouDemo,
