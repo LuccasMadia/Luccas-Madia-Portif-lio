@@ -3,6 +3,7 @@ import StrokeText, { getStrokeTextDuration } from '../StrokeText/StrokeText';
 import FoldText, { getFoldTextDuration } from '../FoldText/FoldText';
 import { scrollToSection } from '../../utils/scrollToSection';
 import './Hero.css';
+import heroPortraitPlaceholder from '../../assets/hero/hero-portrait-placeholder.svg';
 
 const NAME_ANIMATION = { drawDuration: 1.6, fillDelay: 0.2, stagger: 0.05 };
 const TAGLINE_ANIMATION = { duration: 0.4, stagger: 0.02, splitBy: 'char' };
@@ -79,6 +80,18 @@ export function Hero({ about }) {
             Fale comigo
           </a>
         </div>
+      </motion.div>
+      <motion.div
+        className="hero__media"
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.1 }}
+      >
+        <img
+          src={heroPortraitPlaceholder}
+          alt="Placeholder de retrato — foto real em breve"
+          className="hero__portrait"
+        />
       </motion.div>
     </section>
   );
