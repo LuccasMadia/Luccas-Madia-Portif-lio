@@ -3,7 +3,7 @@ import StrokeText, { getStrokeTextDuration } from '../StrokeText/StrokeText';
 import FoldText, { getFoldTextDuration } from '../FoldText/FoldText';
 import { scrollToSection } from '../../utils/scrollToSection';
 import './Hero.css';
-import heroPortraitPlaceholder from '../../assets/hero/hero-portrait-placeholder.svg';
+import heroPortraitPlaceholder from '../../assets/hero/hero-portrait.png';
 
 const NAME_ANIMATION = { drawDuration: 1.6, fillDelay: 0.2, stagger: 0.05 };
 const TAGLINE_ANIMATION = { duration: 0.4, stagger: 0.02, splitBy: 'char' };
