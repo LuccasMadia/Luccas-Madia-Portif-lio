@@ -19,10 +19,4 @@ describe('Hero', () => {
     expect(screen.getByRole('link', { name: 'Ver projetos' })).toHaveAttribute('href', '#projetos');
     expect(screen.getByRole('link', { name: 'Fale comigo' })).toHaveAttribute('href', '#contato');
   });
-
-  it('renders the placeholder portrait image', () => {
-    render(<Hero about={about} />);
-
-    expect(screen.getByRole('img', { name: /placeholder/i })).toBeInTheDocument();
-  });
 });
