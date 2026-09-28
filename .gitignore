@@ -3,3 +3,5 @@ dist/
 .superpowers/
 .env
 .env.local
+
+.worktrees/
