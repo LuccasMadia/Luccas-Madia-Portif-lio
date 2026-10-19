@@ -6,77 +6,50 @@
 
 .services__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
 }
 
-.service-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 1.5rem 0.5rem;
-  transition: transform 0.2s ease;
-  cursor: pointer;
+/* mesmo visual das folhas da pasta de serviços da hero */
+.service-page {
+  min-height: 170px;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #f3fbf9 0%, #e2f1ee 100%);
+  color: #10201d;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.service-card--active {
-  transform: translateY(-4px);
+.service-page__title {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  margin: 0 0 0.6rem;
 }
 
-.service-card__icon {
-  color: var(--accent);
-  font-size: 2.5rem;
-  margin-bottom: 0.75rem;
+.service-page__title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent-dark);
 }
 
-.service-card h3 {
-  max-height: 0;
-  margin-bottom: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.3s ease, margin-bottom 0.3s ease;
-}
-
-.service-card p {
-  color: var(--text-muted);
+.service-page__text {
+  color: #3c5551;
   font-size: 0.9rem;
-  line-height: 1.5;
-  max-height: 0;
-  margin-top: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
-}
-
-.service-card--active h3,
-.service-card:focus-visible h3 {
-  max-height: 60px;
-  margin-bottom: 0.5rem;
-  opacity: 1;
-}
-
-.service-card--active p,
-.service-card:focus-visible p {
-  max-height: 200px;
-  margin-top: 0.5rem;
-  opacity: 1;
+  line-height: 1.45;
+  margin: 0;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .service-card:hover {
-    transform: translateY(-4px);
-  }
-
-  .service-card:hover h3 {
-    max-height: 60px;
-    margin-bottom: 0.5rem;
-    opacity: 1;
-  }
-
-  .service-card:hover p {
-    max-height: 200px;
-    margin-top: 0.5rem;
-    opacity: 1;
+  .service-page:hover {
+    transform: translateY(-4px) rotate(-1deg);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
   }
 }
