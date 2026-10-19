@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { iconMap } from '../../utils/icons';
+import { ServicesFolder } from '../ServicesFolder/ServicesFolder';
 import { scrollToSection } from '../../utils/scrollToSection';
 import './Hero.css';
 
@@ -47,25 +47,9 @@ export function Hero({ about, services, ready = true }) {
           </motion.div>
         </div>
 
-        <ul className="hero__services">
-          {services.map((service, index) => {
-            const Icon = iconMap[service.icon];
-            return (
-              <motion.li
-                key={service.id}
-                className="hero__service"
-                variants={ENTER}
-                initial="hidden"
-                animate={state}
-                transition={enter(3 + index)}
-              >
-                {Icon && <Icon className="hero__service-icon" aria-hidden="true" />}
-                <h2 className="hero__service-title">{service.title}</h2>
-                <p className="hero__service-text">{service.description}</p>
-              </motion.li>
-            );
-          })}
-        </ul>
+        <motion.div variants={ENTER} initial="hidden" animate={state} transition={enter(3)}>
+          <ServicesFolder services={services} />
+        </motion.div>
       </div>
     </section>
   );

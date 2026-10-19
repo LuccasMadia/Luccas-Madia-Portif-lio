@@ -39,24 +39,28 @@ export const services = [
   {
     id: 'sites',
     title: 'Sites e Sistemas',
+    short: 'Sob medida para o seu negócio.',
     description: 'Sites, catálogos e sistemas sob medida para o seu negócio.',
     icon: 'FaCode',
   },
   {
     id: 'automation',
     title: 'Automação',
+    short: 'Menos tarefa repetitiva.',
     description: 'Tarefas repetitivas resolvidas sozinhas, sem planilha manual.',
     icon: 'FaRobot',
   },
   {
     id: 'google-business',
     title: 'Google Meu Negócio',
+    short: 'Ser encontrado no Google e no Maps.',
     description: 'Seu negócio aparecendo certo no Google e no Maps, sempre atualizado.',
     icon: 'FaMapMarkerAlt',
   },
   {
     id: 'nfc',
     title: 'Placas NFC',
+    short: 'Avaliações com um toque.',
     description: 'Clientes avaliam no Google ou seguem no Instagram com um toque.',
     icon: 'MdNfc',
   },
