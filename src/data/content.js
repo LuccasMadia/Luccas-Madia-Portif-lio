@@ -25,6 +25,8 @@ import popy03 from '../assets/projects/popy/popy-03.png';
 import popy04 from '../assets/projects/popy/popy-04.png';
 import popy05 from '../assets/projects/popy/popy-05.png';
 
+import servicoSites from '../assets/services/sites-e-sistemas.webp';
+
 export const about = {
   name: 'Luccas Madia',
   company: 'Madia Consultoria',
@@ -38,8 +40,7 @@ export const about = {
 export const services = [
   {
     id: 'sites',
-    // FOTO PROVISÓRIA: trocar por uma foto real do serviço
-    image: 'https://picsum.photos/seed/madia-sites/600/800',
+    image: servicoSites,
     title: 'Sites e Sistemas',
     short: 'Sob medida para o seu negócio.',
     description: 'Sites, catálogos e sistemas sob medida para o seu negócio.',
