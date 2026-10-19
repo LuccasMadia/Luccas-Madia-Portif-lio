@@ -62,7 +62,7 @@
   opacity: 1;
 }
 
-/* nome e frase escondidos até passar o mouse (ou focar pelo teclado) */
+/* a frase fica escondida até passar o mouse (ou focar pelo teclado); o nome aparece sempre */
 .service-card__details {
   max-height: 0;
   opacity: 0;

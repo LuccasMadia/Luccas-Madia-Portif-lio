@@ -2,7 +2,7 @@ import { AnimatedSection } from '../AnimatedSection/AnimatedSection';
 import { scrollToSection } from '../../utils/scrollToSection';
 import './Services.css';
 
-// Cartão com a arte do serviço e só o "Quero saber mais"; o nome e a frase aparecem ao passar o mouse.
+// Cartão com a arte, o nome do serviço e o "Quero saber mais"; a frase aparece ao passar o mouse.
 function ServiceCard({ service }) {
   return (
     <article className="service-card">
@@ -10,8 +10,8 @@ function ServiceCard({ service }) {
       {service.image && <img className="service-card__image" src={service.image} alt={service.title} loading="lazy" />}
       <div className="service-card__shade" />
       <div className="service-card__content">
+        <h3 className="service-card__title">{service.title}</h3>
         <div className="service-card__details">
-          <h3 className="service-card__title">{service.title}</h3>
           <p className="service-card__text">{service.short}</p>
         </div>
         <a
