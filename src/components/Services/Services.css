@@ -40,11 +40,55 @@
   transform: scale(1.25);
 }
 
-/* escurece a parte de baixo para o texto ler bem sobre qualquer foto */
+/* escurece só a base para o botão; ao passar o mouse escurece mais, para o texto que aparece */
 .service-card__shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20, 20, 20, 0) 30%, rgba(20, 20, 20, 0.78) 62%, rgba(16, 16, 16, 0.96) 100%);
+  background: linear-gradient(180deg, rgba(20, 20, 20, 0) 60%, rgba(16, 16, 16, 0.85) 100%);
+  transition: opacity 0.35s ease;
+}
+
+.service-card__shade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 20, 20, 0) 35%, rgba(20, 20, 20, 0.8) 65%, rgba(16, 16, 16, 0.96) 100%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.service-card:hover .service-card__shade::after,
+.service-card:focus-within .service-card__shade::after {
+  opacity: 1;
+}
+
+/* nome e frase escondidos até passar o mouse (ou focar pelo teclado) */
+.service-card__details {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(8px);
+  transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.4s ease;
+}
+
+.service-card:hover .service-card__details,
+.service-card:focus-within .service-card__details {
+  max-height: 10rem;
+  opacity: 1;
+  transform: none;
+}
+
+/* no celular não existe "passar o mouse": o texto fica sempre visível */
+@media (hover: none) {
+  .service-card__details {
+    max-height: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .service-card__shade::after {
+    opacity: 1;
+  }
 }
 
 .service-card__content {

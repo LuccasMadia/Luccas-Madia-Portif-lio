@@ -12,8 +12,8 @@ describe('Services', () => {
 
     expect(screen.getByRole('heading', { name: 'Serviço 1' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Serviço 2' })).toBeInTheDocument();
-    expect(screen.getByText('Descrição 1')).toBeInTheDocument();
-    expect(screen.getByText('Descrição 2')).toBeInTheDocument();
+    expect(screen.getByText('Frase 1')).toBeInTheDocument();
+    expect(screen.getByText('Frase 2')).toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: /Quero saber mais/ })[0]).toHaveAttribute('href', '#contato');
   });
 });
