@@ -14,7 +14,6 @@ export function Hero({ about }) {
 
   return (
     <section id="sobre" className="hero">
-      <div className="hero__overlay" aria-hidden="true" />
       <motion.div
         className="hero__content"
         initial={{ opacity: 0, y: 16 }}

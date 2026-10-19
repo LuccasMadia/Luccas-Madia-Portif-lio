@@ -5,32 +5,11 @@
   align-items: center;
   padding: 8rem 1.5rem 2rem;
   overflow: hidden;
-  background: linear-gradient(160deg, var(--bg) 0%, var(--bg-alt-2) 100%);
-}
-
-@media (min-width: 768px) {
-  .hero {
-    background-image: url('../../assets/hero/hero-banner.png');
-    background-size: cover;
-    background-position: right center;
-    background-repeat: no-repeat;
-  }
-}
-
-.hero__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(26, 26, 26, 0.95) 0%,
-    rgba(26, 26, 26, 0.6) 45%,
-    rgba(26, 26, 26, 0.15) 75%
-  );
 }
 
 .hero__content {
   max-width: 640px;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
 }
