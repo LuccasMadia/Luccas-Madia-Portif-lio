@@ -63,14 +63,16 @@ export function ServicesFolder({ services }) {
           return (
             <motion.div
               key={service.id}
-              className="services-folder__page"
+              className={`services-folder__page${service.image ? ' services-folder__page--image' : ''}`}
               style={{ zIndex: index === 1 || index === 2 ? 20 : 10 }}
               initial={false}
               animate={{ x: target.x * scale, y: target.y, rotate: target.rotate }}
               transition={{ ...PAGE_SPRING, stiffness: PAGE_SPRING.stiffness + index * 8 }}
             >
+              {/* com arte, a folha mostra a foto e só o nome; sem arte, fica o fundo cinza com a frase */}
+              {service.image && <img className="services-folder__page-image" src={service.image} alt="" />}
               <h3 className="services-folder__page-title">{service.title}</h3>
-              <p className="services-folder__page-text">{service.short}</p>
+              {!service.image && <p className="services-folder__page-text">{service.short}</p>}
             </motion.div>
           );
         })}

@@ -18,6 +18,16 @@ describe('ServicesFolder', () => {
     });
   });
 
+  it('shows the art on pages that have one and keeps the short text for the others', () => {
+    const withArt = services.map((service, index) => (index === 0 ? { ...service, image: 'sites.webp' } : service));
+    const { container } = render(<ServicesFolder services={withArt} />);
+
+    expect(container.querySelectorAll('.services-folder__page-image')).toHaveLength(1);
+    expect(container.querySelector('.services-folder__page-image')).toHaveAttribute('src', 'sites.webp');
+    expect(screen.queryByText('Sob medida.')).not.toBeInTheDocument();
+    expect(screen.getByText('Menos tarefa.')).toBeInTheDocument();
+  });
+
   it('opens and closes with a tap or the keyboard', () => {
     render(<ServicesFolder services={services} />);
     const folder = screen.getByRole('button', { name: 'Serviços' });

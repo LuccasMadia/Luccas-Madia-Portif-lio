@@ -48,21 +48,39 @@
   top: 10px;
   left: 50%;
   width: 126px;
-  min-height: 190px;
+  height: 168px; /* 3:4, igual aos cartões da seção Serviços */
   margin-left: -63px;
   padding: 12px;
+  overflow: hidden;
   border-radius: 12px;
-  background: linear-gradient(180deg, #f3fbf9 0%, #e2f1ee 100%);
-  color: #10201d;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  background: #171717; /* mesma cor do fundo das artes */
+  color: #f5f5f5;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.services-folder__page-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* escurece o topo da foto para o nome ficar legível (o pé da folha fica atrás da pasta) */
+.services-folder__page--image::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 55%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent);
 }
 
 .services-folder__page-title {
   font-size: 0.85rem;
   line-height: 1.15;
-  margin: 0 0 0.4rem;
+  margin: 0;
   padding-left: 0.85rem;
   position: relative;
+  z-index: 1;
 }
 
 .services-folder__page-title::before {
@@ -73,14 +91,14 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--accent-dark);
+  background: var(--accent);
 }
 
 .services-folder__page-text {
   font-size: 0.72rem;
   line-height: 1.4;
-  color: #3c5551;
-  margin: 0;
+  color: var(--text-muted);
+  margin: 0.4rem 0 0;
 }
 
 .services-folder__front {
@@ -122,7 +140,8 @@
 .services-folder__label strong {
   display: block;
   font-family: var(--font-heading);
-  font-size: 1.2rem;
+  font-weight: 400;
+  font-size: 1.4rem;
 }
 
 .services-folder__label span {
@@ -157,7 +176,7 @@
 
   .services-folder__page {
     width: 96px;
-    min-height: 160px;
+    height: 128px;
     margin-left: -48px;
     padding: 10px;
   }
