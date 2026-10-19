@@ -6,7 +6,8 @@ import './Services.css';
 function ServiceCard({ service }) {
   return (
     <article className="service-card">
-      <img className="service-card__image" src={service.image} alt={service.title} loading="lazy" />
+      {/* sem arte, o cartão fica só com o fundo cinza */}
+      {service.image && <img className="service-card__image" src={service.image} alt={service.title} loading="lazy" />}
       <div className="service-card__shade" />
       <div className="service-card__content">
         <div className="service-card__details">

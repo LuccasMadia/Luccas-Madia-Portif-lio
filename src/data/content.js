@@ -26,6 +26,7 @@ import popy04 from '../assets/projects/popy/popy-04.png';
 import popy05 from '../assets/projects/popy/popy-05.png';
 
 import servicoSites from '../assets/services/sites-e-sistemas.webp';
+import servicoPlacas from '../assets/services/placas-nfc.webp';
 
 export const about = {
   name: 'Luccas Madia',
@@ -48,8 +49,6 @@ export const services = [
   },
   {
     id: 'automation',
-    // FOTO PROVISÓRIA: trocar por uma foto real do serviço
-    image: 'https://picsum.photos/seed/madia-automacao/600/800',
     title: 'Automação',
     short: 'Menos tarefa repetitiva.',
     description: 'Tarefas repetitivas resolvidas sozinhas, sem planilha manual.',
@@ -57,8 +56,6 @@ export const services = [
   },
   {
     id: 'google-business',
-    // FOTO PROVISÓRIA: trocar por uma foto real do serviço
-    image: 'https://picsum.photos/seed/madia-gmn/600/800',
     title: 'Google Meu Negócio',
     short: 'Ser encontrado no Google e no Maps.',
     description: 'Seu negócio aparecendo certo no Google e no Maps, sempre atualizado.',
@@ -66,8 +63,7 @@ export const services = [
   },
   {
     id: 'nfc',
-    // FOTO PROVISÓRIA: trocar por uma foto real do serviço
-    image: 'https://picsum.photos/seed/madia-nfc/600/800',
+    image: servicoPlacas,
     title: 'Placas NFC',
     short: 'Avaliações com um toque.',
     description: 'Clientes avaliam no Google ou seguem no Instagram com um toque.',

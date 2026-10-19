@@ -15,7 +15,7 @@
   aspect-ratio: 3 / 4;
   border-radius: 18px;
   overflow: hidden;
-  background: var(--bg-alt);
+  background: #171717; /* mesma cor do fundo das artes */
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
