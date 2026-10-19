@@ -11,7 +11,9 @@ import {
   FaFileExcel,
   FaGitAlt,
   FaFigma,
+  FaMapMarkerAlt,
 } from 'react-icons/fa';
+import { MdNfc } from 'react-icons/md';
 import { SiNotion } from 'react-icons/si';
 
 export const iconMap = {
@@ -27,5 +29,7 @@ export const iconMap = {
   FaFileExcel,
   FaGitAlt,
   FaFigma,
+  FaMapMarkerAlt,
+  MdNfc,
   SiNotion,
 };

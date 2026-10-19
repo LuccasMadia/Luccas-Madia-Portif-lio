@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Header } from '../components/Header/Header';
 import { Hero } from '../components/Hero/Hero';
 import { Services } from '../components/Services/Services';
@@ -8,9 +8,16 @@ import { Contact } from '../components/Contact/Contact';
 import { Footer } from '../components/Footer/Footer';
 import { CustomCursor } from '../components/CustomCursor/CustomCursor';
 import { WhatsAppButton } from '../components/WhatsAppButton/WhatsAppButton';
+import { WelcomeIntro, shouldShowIntro } from '../components/WelcomeIntro/WelcomeIntro';
 import { about, services, projects, skills, socials } from '../data/content';
 
 export function Home() {
+  // quem chega por um link com #secao vai direto ao conteúdo, sem a abertura
+  const [showIntro, setShowIntro] = useState(() => !window.location.hash && shouldShowIntro());
+  const [heroReady, setHeroReady] = useState(!showIntro);
+  const startHero = useCallback(() => setHeroReady(true), []);
+  const finishIntro = useCallback(() => setShowIntro(false), []);
+
   useEffect(() => {
     if (!window.location.hash) return;
     const id = window.location.hash.slice(1);
@@ -19,10 +26,11 @@ export function Home() {
 
   return (
     <>
+      {showIntro && <WelcomeIntro onLeave={startHero} onDone={finishIntro} />}
       <CustomCursor />
       <Header name={about.name} />
       <main>
-        <Hero about={about} />
+        <Hero about={about} services={services} ready={heroReady} />
         <Services services={services} />
         <Projects projects={projects} />
         <Skills skills={skills} about={about} />

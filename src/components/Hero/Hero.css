@@ -3,45 +3,93 @@
   min-height: clamp(560px, 100vh, 820px);
   display: flex;
   align-items: center;
-  padding: 8rem 1.5rem 2rem;
+  padding: 8rem 1.5rem 3rem;
   overflow: hidden;
 }
 
-.hero__content {
-  max-width: 640px;
+.hero__inner {
+  width: 100%;
+  max-width: var(--max-width);
   margin: 0 auto;
-  position: relative;
-  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 3rem;
+  align-items: center;
 }
 
-.hero__eyebrow {
-  color: var(--accent);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  margin-bottom: 1rem;
+.hero__company {
+  font-size: clamp(2.6rem, 5.5vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0;
 }
 
-.hero__name {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  margin-bottom: 0.75rem;
-}
-
-.hero__tagline {
-  color: var(--accent);
-  font-size: 1.1rem;
-  min-height: 1.6em;
-  margin-bottom: 1.5rem;
-}
-
-.hero__bio {
+.hero__signature {
   color: var(--text-muted);
-  margin-bottom: 2rem;
+  margin: 0.75rem 0 0;
+}
+
+.hero__signature strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.hero__description {
+  color: var(--text-muted);
+  font-size: 1.1rem;
   line-height: 1.6;
+  max-width: 30rem;
+  margin: 1.5rem 0 2rem;
 }
 
 .hero__actions {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+.hero__services {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.hero__service {
+  background: rgba(26, 26, 26, 0.72);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.1rem;
+}
+
+.hero__service-icon {
+  color: var(--accent);
+  font-size: 1.5rem;
+}
+
+.hero__service-title {
+  font-size: 1rem;
+  margin: 0.75rem 0 0.4rem;
+}
+
+.hero__service-text {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__services {
+    grid-template-columns: 1fr;
+  }
 }

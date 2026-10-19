@@ -14,6 +14,8 @@ describe('iconMap', () => {
       'FaFileExcel',
       'FaGitAlt',
       'FaFigma',
+      'FaMapMarkerAlt',
+      'MdNfc',
     ];
 
     keys.forEach((key) => {

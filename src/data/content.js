@@ -27,6 +27,8 @@ import popy05 from '../assets/projects/popy/popy-05.png';
 
 export const about = {
   name: 'Luccas Madia',
+  company: 'Madia Consultoria',
+  heroDescription: 'Sites, sistemas e presença no Google para negócios que querem ser encontrados e lembrados.',
   role: 'Desenvolvedor & Consultor de Gestão',
   tagline: 'Desenvolvimento, Administração e Gestão de Projetos',
   bio: 'Desenvolvo sites e sistemas sob medida, com foco em automatizar processos e simplificar a rotina de pequenas e médias empresas. Uno experiência em desenvolvimento a uma visão de gestão, entregando soluções que funcionam bem e geram resultado real para o negócio.',
@@ -35,28 +37,28 @@ export const about = {
 
 export const services = [
   {
-    id: 'web-dev',
-    title: 'Desenvolvimento Web',
-    description: 'Criação de sites e aplicações web modernas, responsivas e performáticas.',
+    id: 'sites',
+    title: 'Sites e Sistemas',
+    description: 'Sites, catálogos e sistemas sob medida para o seu negócio.',
     icon: 'FaCode',
   },
   {
-    id: 'consulting',
-    title: 'Consultoria em Gestão',
-    description: 'Análise e otimização de processos administrativos e de negócio.',
-    icon: 'FaChartLine',
-  },
-  {
     id: 'automation',
-    title: 'Automação de Processos',
-    description: 'Automatização de tarefas repetitivas para ganho de eficiência.',
+    title: 'Automação',
+    description: 'Tarefas repetitivas resolvidas sozinhas, sem planilha manual.',
     icon: 'FaRobot',
   },
   {
-    id: 'support',
-    title: 'Suporte Administrativo',
-    description: 'Apoio na organização e gestão administrativa de projetos e equipes.',
-    icon: 'FaClipboardList',
+    id: 'google-business',
+    title: 'Google Meu Negócio',
+    description: 'Seu negócio aparecendo certo no Google e no Maps, sempre atualizado.',
+    icon: 'FaMapMarkerAlt',
+  },
+  {
+    id: 'nfc',
+    title: 'Placas NFC',
+    description: 'Clientes avaliam no Google ou seguem no Instagram com um toque.',
+    icon: 'MdNfc',
   },
 ];
 

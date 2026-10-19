@@ -1,85 +1,72 @@
 import { motion } from 'framer-motion';
-import StrokeText, { getStrokeTextDuration } from '../StrokeText/StrokeText';
-import FoldText, { getFoldTextDuration } from '../FoldText/FoldText';
+import { iconMap } from '../../utils/icons';
 import { scrollToSection } from '../../utils/scrollToSection';
 import './Hero.css';
 
-const NAME_ANIMATION = { drawDuration: 1.6, fillDelay: 0.2, stagger: 0.05 };
-const TAGLINE_ANIMATION = { duration: 0.4, stagger: 0.02, splitBy: 'char' };
-const TAGLINE_OVERLAP = 0.6;
+const ENTER = { hidden: { opacity: 0, y: 14 }, shown: { opacity: 1, y: 0 } };
+const enter = (order) => ({ duration: 0.7, delay: order * 0.12, ease: [0.2, 0.7, 0.2, 1] });
 
-export function Hero({ about }) {
-  const taglineStart = Math.max(0, getStrokeTextDuration(about.name, NAME_ANIMATION) - TAGLINE_OVERLAP);
-  const bioStart = taglineStart + getFoldTextDuration(about.tagline, TAGLINE_ANIMATION);
+// `ready` segura a entrada até a tela de boas-vindas sumir, para a animação não rodar escondida.
+export function Hero({ about, services, ready = true }) {
+  const state = ready ? 'shown' : 'hidden';
 
   return (
     <section id="sobre" className="hero">
-      <motion.div
-        className="hero__content"
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <p className="hero__eyebrow">Portfólio</p>
-        <h1 className="hero__name">
-          <StrokeText
-            text={about.name}
-            strokeColor="var(--accent)"
-            fillColor="var(--text)"
-            strokeWidth={1.4}
-            {...NAME_ANIMATION}
-            ease="power2.out"
-            trigger="mount"
-            fillMode="wipe"
-            fontWeight={700}
-            letterSpacing={-1}
-            reverse={false}
-          />
-        </h1>
-        <p className="hero__tagline">
-          <FoldText
-            text={about.tagline}
-            hinge="top"
-            trigger="mount"
-            {...TAGLINE_ANIMATION}
-            ease="power3.out"
-            perspective={700}
-            creaseShading={0.55}
-            color="var(--accent)"
-            startDelay={taglineStart}
-          />
-        </p>
-        <motion.p
-          className="hero__bio"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: bioStart, ease: 'easeOut' }}
-        >
-          {about.bio}
-        </motion.p>
-        <div className="hero__actions">
-          <a
-            href="#projetos"
-            className="btn btn--primary"
-            onClick={(event) => {
-              event.preventDefault();
-              scrollToSection('projetos');
-            }}
-          >
-            Ver projetos
-          </a>
-          <a
-            href="#contato"
-            className="btn btn--outline"
-            onClick={(event) => {
-              event.preventDefault();
-              scrollToSection('contato');
-            }}
-          >
-            Fale comigo
-          </a>
+      <div className="hero__inner">
+        <div className="hero__content">
+          <motion.div variants={ENTER} initial="hidden" animate={state} transition={enter(0)}>
+            <h1 className="hero__company">{about.company}</h1>
+            <p className="hero__signature">
+              por <strong>{about.name}</strong>
+            </p>
+          </motion.div>
+          <motion.p className="hero__description" variants={ENTER} initial="hidden" animate={state} transition={enter(1)}>
+            {about.heroDescription}
+          </motion.p>
+          <motion.div className="hero__actions" variants={ENTER} initial="hidden" animate={state} transition={enter(2)}>
+            <a
+              href="#contato"
+              className="btn btn--primary"
+              onClick={(event) => {
+                event.preventDefault();
+                scrollToSection('contato');
+              }}
+            >
+              Fale comigo
+            </a>
+            <a
+              href="#projetos"
+              className="btn btn--outline"
+              onClick={(event) => {
+                event.preventDefault();
+                scrollToSection('projetos');
+              }}
+            >
+              Ver projetos
+            </a>
+          </motion.div>
         </div>
-      </motion.div>
+
+        <ul className="hero__services">
+          {services.map((service, index) => {
+            const Icon = iconMap[service.icon];
+            return (
+              <motion.li
+                key={service.id}
+                className="hero__service"
+                variants={ENTER}
+                initial="hidden"
+                animate={state}
+                transition={enter(3 + index)}
+              >
+                {Icon && <Icon className="hero__service-icon" aria-hidden="true" />}
+                <h2 className="hero__service-title">{service.title}</h2>
+                <p className="hero__service-text">{service.description}</p>
+              </motion.li>
+            );
+          })}
+        </ul>
+      </div>
     </section>
   );
 }
