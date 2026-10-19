@@ -8,7 +8,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
-  perspective: 1000px;
 }
 
 .service-card {
@@ -19,8 +18,13 @@
   background: var(--bg-alt);
   border: 1px solid var(--border);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
-  transform-style: preserve-3d;
-  will-change: transform;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* ao passar o mouse o cartão cresce um pouco, sem inclinar */
+.service-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.45);
 }
 
 .service-card__image {
@@ -44,27 +48,12 @@
   background: linear-gradient(180deg, rgba(20, 20, 20, 0) 30%, rgba(20, 20, 20, 0.78) 62%, rgba(16, 16, 16, 0.96) 100%);
 }
 
-/* brilho suave que acompanha o mouse */
-.service-card__glare {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  background: radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(234, 255, 251, 0.18), transparent 55%);
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.service-card:hover .service-card__glare {
-  opacity: 1;
-}
-
 .service-card__content {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
   padding: 1.25rem;
-  transform: translateZ(30px);
 }
 
 .service-card__title {
