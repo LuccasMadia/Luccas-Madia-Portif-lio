@@ -38,6 +38,8 @@ export const about = {
 export const services = [
   {
     id: 'sites',
+    // FOTO PROVISÓRIA: trocar por uma foto real do serviço
+    image: 'https://picsum.photos/seed/madia-sites/600/800',
     title: 'Sites e Sistemas',
     short: 'Sob medida para o seu negócio.',
     description: 'Sites, catálogos e sistemas sob medida para o seu negócio.',
@@ -45,6 +47,8 @@ export const services = [
   },
   {
     id: 'automation',
+    // FOTO PROVISÓRIA: trocar por uma foto real do serviço
+    image: 'https://picsum.photos/seed/madia-automacao/600/800',
     title: 'Automação',
     short: 'Menos tarefa repetitiva.',
     description: 'Tarefas repetitivas resolvidas sozinhas, sem planilha manual.',
@@ -52,6 +56,8 @@ export const services = [
   },
   {
     id: 'google-business',
+    // FOTO PROVISÓRIA: trocar por uma foto real do serviço
+    image: 'https://picsum.photos/seed/madia-gmn/600/800',
     title: 'Google Meu Negócio',
     short: 'Ser encontrado no Google e no Maps.',
     description: 'Seu negócio aparecendo certo no Google e no Maps, sempre atualizado.',
@@ -59,6 +65,8 @@ export const services = [
   },
   {
     id: 'nfc',
+    // FOTO PROVISÓRIA: trocar por uma foto real do serviço
+    image: 'https://picsum.photos/seed/madia-nfc/600/800',
     title: 'Placas NFC',
     short: 'Avaliações com um toque.',
     description: 'Clientes avaliam no Google ou seguem no Instagram com um toque.',

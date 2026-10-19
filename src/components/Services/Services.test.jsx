@@ -7,12 +7,13 @@ const services = [
 ];
 
 describe('Services', () => {
-  it('renders a card for each service', () => {
+  it('renders a photo card for each service with a call to contact', () => {
     render(<Services services={services} />);
 
     expect(screen.getByRole('heading', { name: 'Serviço 1' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Serviço 2' })).toBeInTheDocument();
-    expect(screen.getByText('Frase 1')).toBeInTheDocument();
-    expect(screen.getByText('Frase 2')).toBeInTheDocument();
+    expect(screen.getByText('Descrição 1')).toBeInTheDocument();
+    expect(screen.getByText('Descrição 2')).toBeInTheDocument();
+    expect(screen.getAllByRole('link', { name: /Quero saber mais/ })[0]).toHaveAttribute('href', '#contato');
   });
 });
