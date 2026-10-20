@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { Projects } from './Projects';
 
 const projects = [
@@ -28,7 +28,7 @@ describe('Projects', () => {
     expect(link).toHaveAttribute('href', '/projetos');
   });
 
-  it('only renders the first 5 projects, even when more are passed', () => {
+  it('only puts the first 5 projects in the card stack, even when more are passed', () => {
     const manyProjects = [
       ...projects,
       { id: 'p3', title: 'Projeto C', description: 'Descrição C', stack: ['Node'] },
@@ -38,21 +38,19 @@ describe('Projects', () => {
     ];
     render(<Projects projects={manyProjects} />);
 
-    expect(screen.getByRole('heading', { name: 'Projeto A' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Projeto B' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Projeto C' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Projeto D' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Projeto E' })).toBeInTheDocument();
-    expect(screen.queryByRole('heading', { name: 'Projeto F' })).not.toBeInTheDocument();
+    const stack = within(screen.getByRole('region', { name: 'Projetos' }));
+    ['Projeto A', 'Projeto B', 'Projeto C', 'Projeto D', 'Projeto E'].forEach((title) =>
+      expect(stack.getByText(title)).toBeInTheDocument(),
+    );
+    expect(screen.queryByText('Projeto F')).not.toBeInTheDocument();
   });
 
-  it('renders a numbered card for each project with its title', () => {
+  it('shows the number and title of the project at the front of the stack', () => {
     render(<Projects projects={projects} />);
 
     expect(screen.getByText('01')).toBeInTheDocument();
-    expect(screen.getByText('02')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Projeto A' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Projeto B' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Projeto B' })).not.toBeInTheDocument();
   });
 
   it('renders project details and a "Visitar site" link that opens in a new tab', () => {
@@ -86,47 +84,49 @@ describe('Projects', () => {
     expect(screen.queryByRole('link', { name: 'Visitar site' })).not.toBeInTheDocument();
   });
 
-  it('shows the first image as the visual cover when the project has images', () => {
+  it('uses the first image as the cover of the project card', () => {
     const project = { ...projects[0], liveUrl: undefined, images: ['a.png', 'b.png'] };
     render(<Projects projects={[project]} />);
 
-    expect(screen.getByRole('img', { name: 'Projeto A' })).toHaveAttribute('src', 'a.png');
+    expect(screen.getByRole('img', { name: 'Tela do projeto Projeto A' })).toHaveAttribute('src', 'a.png');
   });
 
-  it('shows a gradient placeholder when the project has no images or case study', () => {
+  it('shows the card without a picture when the project has no images or case study', () => {
     const project = { ...projects[0], liveUrl: undefined };
     render(<Projects projects={[project]} />);
 
-    const placeholder = screen.getByRole('img', { name: 'Projeto A' });
-    expect(placeholder.tagName).not.toBe('IMG');
+    expect(screen.queryByRole('img', { name: 'Tela do projeto Projeto A' })).not.toBeInTheDocument();
   });
 
-  it('opens the site in a new tab when clicking the visual of a project that only has a liveUrl', () => {
+  it('opens the site in a new tab when clicking the front card of a project that only has a liveUrl', () => {
+    const open = vi.spyOn(window, 'open').mockImplementation(() => null);
     render(<Projects projects={[projects[0]]} />);
 
-    const links = screen.getAllByRole('link', { name: /visitar site de projeto a/i });
-    expect(links[0]).toHaveAttribute('href', 'https://example.com/a');
+    fireEvent.click(within(screen.getByRole('region', { name: 'Projetos' })).getByText('Projeto A'));
+
+    expect(open).toHaveBeenCalledWith('https://example.com/a', '_blank', 'noopener,noreferrer');
+    open.mockRestore();
   });
 
-  it('opens the case study modal when clicking the visual of a project with case study entries', () => {
+  it('opens the case study modal when clicking the front card of a project with case study entries', () => {
     const project = {
       ...projects[0],
       caseStudy: [{ titulo: 'Tela inicial', imagem: 'inicio.png', descricao: 'Descrição da tela inicial.' }],
     };
     render(<Projects projects={[project]} />);
 
-    fireEvent.click(screen.getByRole('button', { name: /ver projeto projeto a/i }));
+    fireEvent.click(screen.getByRole('img', { name: 'Tela do projeto Projeto A' }));
 
     expect(screen.getByText('Descrição da tela inicial.')).toBeInTheDocument();
   });
 
-  it('opens the case study modal with a carousel when clicking a project that only has plain images', () => {
+  it('opens the case study modal from the "Ver projeto" button when the project only has plain images', () => {
     const project = { ...projects[0], liveUrl: undefined, images: ['a.png', 'b.png'] };
     render(<Projects projects={[project]} />);
 
-    fireEvent.click(screen.getByRole('button', { name: /ver projeto projeto a/i }));
+    fireEvent.click(screen.getByRole('button', { name: 'Ver projeto' }));
 
-    expect(screen.getAllByRole('img').some((img) => img.getAttribute('src') === 'a.png')).toBe(true);
+    expect(document.querySelector('.case-study-modal')).toBeInTheDocument();
   });
 
   it('is not wrapped in a link or button when the project has neither a liveUrl nor a case study', () => {
@@ -135,32 +135,5 @@ describe('Projects', () => {
 
     expect(screen.queryByRole('link', { name: /visitar site/i })).not.toBeInTheDocument();
     expect(document.querySelector('.project-image-trigger')).not.toBeInTheDocument();
-  });
-
-  describe('image navigation', () => {
-    it('cycles through a project own images using its internal arrows without opening the case study modal', () => {
-      const project = { ...projects[0], liveUrl: undefined, images: ['a.png', 'b.png'] };
-      render(<Projects projects={[project]} />);
-
-      fireEvent.click(screen.getByRole('button', { name: 'Próxima imagem' }));
-
-      expect(screen.getByRole('img', { name: 'Projeto A' })).toHaveAttribute('src', 'b.png');
-      expect(document.querySelector('.case-study-modal')).not.toBeInTheDocument();
-    });
-
-    it('keeps each project image gallery independent from the others', () => {
-      const projectA = { ...projects[0], liveUrl: undefined, images: ['a1.png', 'a2.png'] };
-      const projectB = { ...projects[1], liveUrl: undefined, images: ['b1.png', 'b2.png'] };
-      render(<Projects projects={[projectA, projectB]} />);
-
-      const [cardA, cardB] = screen.getAllByRole('button', { name: 'Próxima imagem' });
-      fireEvent.click(cardA);
-
-      expect(screen.getByRole('img', { name: 'Projeto A' })).toHaveAttribute('src', 'a2.png');
-      expect(screen.getByRole('img', { name: 'Projeto B' })).toHaveAttribute('src', 'b1.png');
-
-      fireEvent.click(cardB);
-      expect(screen.getByRole('img', { name: 'Projeto B' })).toHaveAttribute('src', 'b2.png');
-    });
   });
 });

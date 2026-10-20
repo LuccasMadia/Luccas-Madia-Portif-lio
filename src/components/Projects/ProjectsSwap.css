@@ -1,0 +1,59 @@
+.projects-swap {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 3rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.projects-swap__info {
+  min-height: 300px;
+}
+
+.projects-swap__description {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+}
+
+.projects-swap__hint {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-align: center;
+  margin: 0.5rem 0 0;
+  opacity: 0.8;
+  /* mesma inclinação dos cartões (skewAmount={4}) e centrada debaixo do cartão da frente */
+  transform: skewY(4deg);
+  padding-right: 60px;
+}
+
+.projects-swap__stack {
+  height: 520px;
+}
+
+@media (max-width: 900px) {
+  .projects-swap {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* no celular a pilha vem antes dos detalhes */
+  .projects-swap__visual {
+    order: -1;
+  }
+
+  .projects-swap__stack {
+    height: 380px;
+  }
+
+  .projects-swap__info {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-swap__stack {
+    height: 300px;
+  }
+}

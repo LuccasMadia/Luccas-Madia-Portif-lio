@@ -1,4 +1,4 @@
-import { ProjectsStack } from './ProjectsStack';
+import { ProjectsSwap } from './ProjectsSwap';
 import './Projects.css';
 
 const PREVIEW_LIMIT = 5;
@@ -22,7 +22,7 @@ export function Projects({ projects }) {
         agendamento de exames, controle de férias, entre outros) que lidam com informações sensíveis e por isso
         não podem ser exibidos publicamente.
       </p>
-      <ProjectsStack projects={previewProjects} />
+      <ProjectsSwap projects={previewProjects} />
     </section>
   );
 }

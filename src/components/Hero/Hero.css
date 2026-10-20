@@ -17,10 +17,15 @@
   align-items: center;
 }
 
+/* sem isso a coluna não encolhe abaixo da largura da pasta (400px) e a hero estoura no celular */
+.hero__inner > * {
+  min-width: 0;
+}
+
 .hero__company {
-  font-size: clamp(2.6rem, 5.5vw, 4rem);
+  font-size: clamp(2.3rem, 9vw, 4.5rem);
   line-height: 1.02;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   margin: 0;
 }
 

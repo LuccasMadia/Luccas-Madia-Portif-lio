@@ -5,7 +5,7 @@ describe('App', () => {
   it('renders every top-level section by id', () => {
     const { container } = render(<App />);
 
-    ['sobre', 'servicos', 'projetos', 'habilidades', 'contato'].forEach((id) => {
+    ['sobre', 'servicos', 'projetos', 'tecnologias', 'contato'].forEach((id) => {
       expect(container.querySelector(`#${id}`)).not.toBeNull();
     });
   });

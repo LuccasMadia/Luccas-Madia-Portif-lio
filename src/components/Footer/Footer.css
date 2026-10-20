@@ -18,3 +18,15 @@
 .footer__links a:hover {
   color: var(--accent);
 }
+
+/* espaço para o botão flutuante do WhatsApp não cobrir os links do rodapé */
+.footer {
+  padding-right: 6.5rem;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding-right: 1.5rem;
+    padding-bottom: 6.5rem;
+  }
+}

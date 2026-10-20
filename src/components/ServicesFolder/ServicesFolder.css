@@ -130,7 +130,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 30px;
+  bottom: 40px;
   z-index: 31;
   text-align: center;
   pointer-events: none;
@@ -141,12 +141,7 @@
   display: block;
   font-family: var(--font-heading);
   font-weight: 400;
-  font-size: 1.4rem;
-}
-
-.services-folder__label span {
-  color: var(--text-muted);
-  font-size: 0.8rem;
+  font-size: 1.7rem;
 }
 
 .services-folder__box--open .services-folder__label {
@@ -154,11 +149,14 @@
   transform: translateY(8px);
 }
 
+/* convite para abrir, em destaque no turquesa do site */
 .services-folder__hint {
   text-align: center;
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  margin: 0.75rem 0 0;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 1rem 0 0;
 }
 
 @media (max-width: 520px) {

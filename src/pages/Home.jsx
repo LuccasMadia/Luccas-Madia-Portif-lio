@@ -9,7 +9,7 @@ import { Footer } from '../components/Footer/Footer';
 import { CustomCursor } from '../components/CustomCursor/CustomCursor';
 import { WhatsAppButton } from '../components/WhatsAppButton/WhatsAppButton';
 import { WelcomeIntro, shouldShowIntro } from '../components/WelcomeIntro/WelcomeIntro';
-import { about, services, projects, skills, socials } from '../data/content';
+import { about, services, projects, socials } from '../data/content';
 
 export function Home() {
   // quem chega por um link com #secao vai direto ao conteúdo, sem a abertura
@@ -33,7 +33,7 @@ export function Home() {
         <Hero about={about} services={services} ready={heroReady} />
         <Services services={services} />
         <Projects projects={projects} />
-        <Skills skills={skills} about={about} />
+        <Skills />
         <Contact socials={socials} />
       </main>
       <Footer name={about.name} />

@@ -1,26 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import { Skills } from './Skills';
 
-const skills = [
-  { category: 'Desenvolvimento', items: [{ name: 'React', icon: 'FaReact' }] },
-  { category: 'Gestão', items: [{ name: 'Gestão de Projetos', icon: 'FaTasks' }] },
-];
-
-const about = { yearsExperience: 3, projectsDelivered: 12 };
-
 describe('Skills', () => {
-  it('renders every category and its badges', () => {
-    render(<Skills skills={skills} about={about} />);
+  it('shows only the technologies band', () => {
+    render(<Skills />);
 
-    expect(screen.getByRole('heading', { name: 'Desenvolvimento' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Gestão' })).toBeInTheDocument();
-    expect(screen.getByText('React')).toBeInTheDocument();
-    expect(screen.getByText('Gestão de Projetos')).toBeInTheDocument();
-  });
-
-  it('renders the stat labels', () => {
-    render(<Skills skills={skills} about={about} />);
-
-    expect(screen.getByText('projetos entregues')).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: 'Tecnologias' })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: 'Linguagens e tecnologias utilizadas' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading')).not.toBeInTheDocument();
+    expect(screen.queryByText('projetos entregues')).not.toBeInTheDocument();
   });
 });

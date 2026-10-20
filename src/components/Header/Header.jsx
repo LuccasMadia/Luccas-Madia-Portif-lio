@@ -8,7 +8,6 @@ const NAV_ITEMS = [
   { id: 'sobre', label: 'Sobre' },
   { id: 'servicos', label: 'Serviços' },
   { id: 'projetos', label: 'Projetos' },
-  { id: 'habilidades', label: 'Habilidades' },
   { id: 'contato', label: 'Contato' },
 ];
 

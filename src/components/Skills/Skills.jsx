@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   SiReact,
   SiJavascript,
@@ -9,13 +8,8 @@ import {
   SiHtml5,
   SiCss,
 } from 'react-icons/si';
-import { AnimatedSection } from '../AnimatedSection/AnimatedSection';
-import { AnimatedCounter } from '../AnimatedCounter/AnimatedCounter';
 import { LogoLoop } from '../LogoLoop/LogoLoop';
-import { iconMap } from '../../utils/icons';
 import './Skills.css';
-
-const COUNTER_START_DELAY = 500;
 
 const languages = [
   { node: <SiReact />, title: 'React' },
@@ -28,58 +22,22 @@ const languages = [
   { node: <SiCss />, title: 'CSS3' },
 ];
 
-export function Skills({ skills, about }) {
-  const [hasEntered, setHasEntered] = useState(false);
-
+// Só a faixa de tecnologias rolando; a antiga seção "Competências & Habilidades" saiu.
+export function Skills() {
   return (
-    <AnimatedSection id="habilidades" className="skills" onViewportEnter={() => setHasEntered(true)}>
-      <p className="section-label">Competências &</p>
-      <h2 className="section-title">Habilidades</h2>
-
-      <div className="skills__stats">
-        <div className="skills__stat">
-          <AnimatedCounter
-            target={about.projectsDelivered}
-            suffix="+"
-            start={hasEntered}
-            delay={COUNTER_START_DELAY}
-          />
-          <p>projetos entregues</p>
-        </div>
-      </div>
-
-      <div className="skills__group">
-        <h3>Tecnologias</h3>
-        <LogoLoop
-          logos={languages}
-          speed={60}
-          direction="left"
-          logoHeight={32}
-          gap={56}
-          pauseOnHover
-          fadeOut
-          fadeOutColor="var(--bg)"
-          scaleOnHover
-          ariaLabel="Linguagens e tecnologias utilizadas"
-        />
-      </div>
-
-      {skills.map((group) => (
-        <div className="skills__group" key={group.category}>
-          <h3>{group.category}</h3>
-          <ul className="skills__badges">
-            {group.items.map((item) => {
-              const Icon = iconMap[item.icon];
-              return (
-                <li className="skills__badge" key={item.name}>
-                  {Icon && <Icon aria-hidden="true" />}
-                  {item.name}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      ))}
-    </AnimatedSection>
+    <section id="tecnologias" className="skills" aria-label="Tecnologias">
+      <LogoLoop
+        logos={languages}
+        speed={60}
+        direction="left"
+        logoHeight={32}
+        gap={56}
+        pauseOnHover
+        fadeOut
+        fadeOutColor="var(--bg)"
+        scaleOnHover
+        ariaLabel="Linguagens e tecnologias utilizadas"
+      />
+    </section>
   );
 }

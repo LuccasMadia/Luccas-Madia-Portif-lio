@@ -104,7 +104,6 @@ export function ServicesFolder({ services }) {
 
         <div className="services-folder__label" aria-hidden={open}>
           <strong>Serviços</strong>
-          <span>o que a Madia faz pelo seu negócio</span>
         </div>
       </div>
       <p className="services-folder__hint">{hoverable ? 'passe o mouse para abrir' : 'toque para abrir'}</p>

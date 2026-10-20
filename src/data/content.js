@@ -1,6 +1,7 @@
 // EDITAR AQUI: troque todo o conteúdo abaixo pelas suas informações reais.
 
 import canecasDemo from '../assets/projects/canecas/canecas-demo.webm';
+import canecasInicio from '../assets/projects/canecas/canecas-00-inicio.png';
 import pingouDemo from '../assets/projects/pingou/pingou-demo.webm';
 import pingouPoster from '../assets/projects/pingou/pingou-poster.jpg';
 
@@ -27,6 +28,8 @@ import popy05 from '../assets/projects/popy/popy-05.png';
 
 import servicoSites from '../assets/services/sites-e-sistemas.webp';
 import servicoPlacas from '../assets/services/placas-nfc.webp';
+import servicoAutomacao from '../assets/services/automacao.webp';
+import servicoGoogle from '../assets/services/google-meu-negocio.webp';
 
 export const about = {
   name: 'Luccas Madia',
@@ -49,6 +52,7 @@ export const services = [
   },
   {
     id: 'automation',
+    image: servicoAutomacao,
     title: 'Automação',
     short: 'Menos tarefa repetitiva.',
     description: 'Tarefas repetitivas resolvidas sozinhas, sem planilha manual.',
@@ -56,6 +60,7 @@ export const services = [
   },
   {
     id: 'google-business',
+    image: servicoGoogle,
     title: 'Google Meu Negócio',
     short: 'Ser encontrado no Google e no Maps.',
     description: 'Seu negócio aparecendo certo no Google e no Maps, sempre atualizado.',
@@ -81,6 +86,7 @@ export const projects = [
     stack: ['Python', 'Tkinter/PyQt'],
     status: 'Em funcionamento',
     video: canecasDemo,
+    cover: canecasInicio,
     codeUrl: 'https://github.com/seu-usuario/canecas-da-dri',
   },
   {
