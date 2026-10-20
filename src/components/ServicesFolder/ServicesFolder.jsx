@@ -106,7 +106,7 @@ export function ServicesFolder({ services }) {
           <strong>Serviços</strong>
         </div>
       </div>
-      <p className="services-folder__hint">{hoverable ? 'passe o mouse para abrir' : 'toque para abrir'}</p>
+      <p className="services-folder__hint">{hoverable ? 'passe o mouse ou clique para abrir' : 'toque para abrir'}</p>
     </div>
   );
 }

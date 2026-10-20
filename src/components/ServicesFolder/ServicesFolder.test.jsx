@@ -49,7 +49,7 @@ describe('ServicesFolder', () => {
       expect(folder).toHaveAttribute('aria-expanded', 'true');
       fireEvent.mouseLeave(folder);
       expect(folder).toHaveAttribute('aria-expanded', 'false');
-      expect(screen.getByText('passe o mouse para abrir')).toBeInTheDocument();
+      expect(screen.getByText('passe o mouse ou clique para abrir')).toBeInTheDocument();
     } finally {
       window.matchMedia = original;
     }
