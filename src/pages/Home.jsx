@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Header } from '../components/Header/Header';
 import { Hero } from '../components/Hero/Hero';
 import { Services } from '../components/Services/Services';
+import { ServicesFlight } from '../components/ServicesFlight/ServicesFlight';
 import { Projects } from '../components/Projects/Projects';
 import { Skills } from '../components/Skills/Skills';
 import { Contact } from '../components/Contact/Contact';
@@ -32,6 +33,7 @@ export function Home() {
       <main>
         <Hero about={about} services={services} ready={heroReady} />
         <Services services={services} />
+        <ServicesFlight services={services} />
         <Projects projects={projects} />
         <Skills />
         <Contact socials={socials} />

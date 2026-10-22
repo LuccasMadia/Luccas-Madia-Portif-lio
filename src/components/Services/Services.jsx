@@ -3,11 +3,12 @@ import { scrollToSection } from '../../utils/scrollToSection';
 import './Services.css';
 
 // Cartão com a arte, o nome do serviço e o "Quero saber mais"; a frase aparece ao passar o mouse.
-function ServiceCard({ service }) {
+// Também desenha as cópias que voam da pasta (ServicesFlight), que carregam a arte na hora.
+export function ServiceCard({ service, loading = 'lazy' }) {
   return (
     <article className="service-card">
       {/* sem arte, o cartão fica só com o fundo cinza */}
-      {service.image && <img className="service-card__image" src={service.image} alt={service.title} loading="lazy" />}
+      {service.image && <img className="service-card__image" src={service.image} alt={service.title} loading={loading} />}
       <div className="service-card__shade" />
       <div className="service-card__content">
         <h3 className="service-card__title">{service.title}</h3>

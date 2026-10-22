@@ -1,0 +1,18 @@
+/* camada das cópias, do topo da página até o fim da seção Serviços; abaixo do header (50).
+   corta o que passar da largura da tela (cartões do carrossel no celular), sem rolagem lateral */
+.services-flight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 40;
+}
+
+.services-flight__card {
+  position: absolute;
+  visibility: hidden;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
